@@ -1,0 +1,98 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	    <link href="public/css/bootstrap.css" rel="stylesheet" type="text/css">
+	    <link href="public/css/main.css" rel="stylesheet" type="text/css">
+	    
+	    <script type="text/javascript" src='public/js/html5.js' ></script>
+	    <script type="text/javascript" src='public/js/jquery-1.7.2.js' ></script>
+	    <script type="text/javascript" src='public/js/bootstrap.js' ></script>
+	    <script type="text/javascript">
+	    	$(document).ready(function () {
+	    		$(".alert").alert();
+	    	});
+	    </script>
+	    
+		<title>Online SuperMarket</title>
+	</head>
+
+	<body>
+
+		<!-- Header -->
+		<div class='navbar navbar-fixed-top'>
+			<div class='navbar-inner'>
+				<div class='container'>
+					<a class='brand' href='Home'>Shop</a>
+					<ul class='nav'>
+						<li><a href='Home'>Home</a></li>
+						<li><a href='Products'>Products</a></li>
+						<li><a href='Recipes'>Recipes</a></li>
+					</ul>
+					<p class='navbar-text pull-right'>
+						<a href='/User'>Login</a>
+@*************
+						<% if (user == null) { %>
+						<% } else { %>
+						Logged in as <a href='User'><%= user.getUsername() %></a>
+						<% } %>
+@*************
+					</p>
+				</div>
+			</div>
+		</div>
+@*************
+		<%
+		String error = (String) session.getAttribute("error");
+		String success = (String) session.getAttribute("success");
+		String message = (String) session.getAttribute("message");
+		
+		if (error != null && error != "") { %>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert">×</a>
+			<%= error %>
+		</div>
+		<% }
+		if (success != null && success != "") { %>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+			<%= success %>
+		</div>
+		<% }
+		if (message != null && message != "") { %>
+		<div class="alert alert-info">
+			<a class="close" data-dismiss="alert">×</a>
+			<%= message %>
+		</div>
+****************************@
+		<div class='row'>
+			<div class='span3'>
+				<div class='well sidebar-nav'>
+					<ul class='nav nav-list'>
+						<li><a href="Home">Home</a></li>
+						<li class='nav-header'>Products</li>
+						<li><a href="Products">Search</a></li>
+<!-- 						<li><a href="Products?filter=offers">Offers</a></li> -->
+						<li><a href="Products?filter=popular">Most Popular</a></li>
+						<li class='nav-header'>Recipes</li>
+						<li><a href="Recipes">Search</a></li>
+						<li class='nav-header'>User</li>
+						<li><a href="User">Profile</a></li>
+						<li><a href="ShoppingCart">Shopping Cart</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class='span9'>
+        		@content
+			</div>
+		</div>
+		<footer>
+			Database Modeling Project 2012
+		</footer>
+    </body>
+</html>
