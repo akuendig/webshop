@@ -53,11 +53,11 @@ public final class Product {
 		return price;
 	}
 
-	public int getBrand_id() {
+	public int getBrandId() {
 		return brand_id;
 	}
 
-	public int getOrigin_id() {
+	public int getOriginId() {
 		return origin_id;
 	}
 		

@@ -1,5 +1,6 @@
-@(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment], user : model.User)
+@(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment], user : String)
 
+@main("Product") {
 
 <h1>@product.getName()</h1>
 <hr />
@@ -24,8 +25,8 @@
 	<tr>
 		<th></th>
 		<td>
-			<form method='post' action='/product/product.getId()/like'>
-				<button type="submit" class="btn" @if(user != null) {"disabled"}>Like</button>
+			<form class='form-inline' method='post' action='/product/@product.getId()/like'>
+				<button type="submit" class="btn" @if(user == null){disabled}>Like</button>
 			</form>
 		</td>
 	</tr>
@@ -67,4 +68,5 @@
 		<br>
 		<button type="submit" class="btn btn-success">Send</button>
 	</form>
+}
 }

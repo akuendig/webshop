@@ -8,22 +8,14 @@
 	<select name="category" class='span2'>
 		<option value="0">Category</option>
 		@for(category <- categories) {
-			@if(category.getId() == cId) {
-				<option selected="selected" value="@category.getId()">@category.getName()</option>
-			} else {
-				<option value="@category.getId()">@category.getName()</option>
-			}
+			<option @if(category.getId() == cId){selected} value="@category.getId()">@category.getName()</option>
 		}
 	</select>
 
 	<select name="brand" class='span2'>
 		<option value="0">Brand</option>
 		@for(brand <- brands) {
-			@if(brand.getId() == bId) {
-				<option selected="selected" value="@brand.getId()">@brand.getName()</option>
-			} else {
-				<option value="@brand.getId()">@brand.getName()</option>
-			}
+			<option @if(brand.getId() == bId){selected} value="@brand.getId()">@brand.getName()</option>
 		}
 	</select>
 
@@ -37,7 +29,7 @@
 			<td>@product.getName()</td>
 			<td>@product.getWeight()</td>
 			<td>@product.getPrice()</td>
-			<td><a class='search' href='Product/@product.getId()'>
+			<td><a class='search' href='/product/@product.getId()'>
 			<i class='icon-search'></i>View
 			</a></td>
 		</tr>

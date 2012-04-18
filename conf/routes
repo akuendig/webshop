@@ -11,9 +11,7 @@ GET		/product/search				controllers.ProductController.search(brand : Long, categ
 
 GET		/product/:id				controllers.ProductController.get(id : Long)
 POST	/product/:id/like			controllers.ProductController.like(id : Long)
-
-# Product page
-GET		/product					controllers.ProductController.index()
+POST	/product/:id/add			controllers.ProductController.add(id: Long, quantity : Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
