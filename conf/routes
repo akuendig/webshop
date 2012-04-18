@@ -7,6 +7,9 @@ GET     /                           controllers.Application.index()
 
 # Product page
 GET		/product					controllers.ProductController.index()
+GET		/product/search				controllers.ProductController.search(brand : Long, category : Long, name)
+
+GET		/product/:id				controllers.ProductController.get(id : Long)
 POST	/product/:id/like			controllers.ProductController.like(id : Long)
 
 # Product page

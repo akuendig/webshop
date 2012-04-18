@@ -27,13 +27,13 @@ public class ProductRepository extends BaseRepository<Product> {
 				"ORDER BY ProductName ");
 	}
 
-	public final List<Product> getRefined(String name, String categoryId, String brandId) {
+	public final List<Product> getRefined(String name, int categoryId, int brandId) {
 		String query =
 				"SELECT * " +
 				"FROM tblproduct ";
 
 		// Important to make the join first!!!
-		if (categoryId != null && categoryId != "") {
+		if (categoryId != 0) {
 			query +=
 					"INNER JOIN " +
 					"( " +
@@ -47,7 +47,7 @@ public class ProductRepository extends BaseRepository<Product> {
 			query += "WHERE ProductName LIKE '%"+name+"%' ";
 		}
 
-		if (brandId != null && brandId != "") {
+		if (brandId != 0) {
 			query += name != null && name != "" ? "AND " : "WHERE ";
 			query += Product.PRODUCT_BRAND_ID+"="+ brandId + " ";
 		}

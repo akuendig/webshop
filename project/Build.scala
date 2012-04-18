@@ -8,7 +8,8 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0"
 
     val appDependencies = Seq(
-        "com.typesafe" % "play-plugins-guice" % "2.0-RC4"
+        "com.typesafe" % "play-plugins-guice" % "2.0-RC4",
+        "mysql" % "mysql-connector-java" % "5.1.12"
       // Add your project dependencies here,
     )
 

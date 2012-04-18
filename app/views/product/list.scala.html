@@ -1,3 +1,46 @@
-@(products: List[model.Product])
+@(products: List[model.Product], categories: List[model.Category], brands: List[model.Brand], cId : Int, bId : Int, name : String)
 
-Hello Product
+@main("Products") {
+
+<form class='well form-inline' method="get" action="/product/search">
+	<input type="text" name="name" placeholder='Name' />
+
+	<select name="category" class='span2'>
+		<option value="0">Category</option>
+		@for(category <- categories) {
+			@if(category.getId() == cId) {
+				<option selected="selected" value="@category.getId()">@category.getName()</option>
+			} else {
+				<option value="@category.getId()">@category.getName()</option>
+			}
+		}
+	</select>
+
+	<select name="brand" class='span2'>
+		<option value="0">Brand</option>
+		@for(brand <- brands) {
+			@if(brand.getId() == bId) {
+				<option selected="selected" value="@brand.getId()">@brand.getName()</option>
+			} else {
+				<option value="@brand.getId()">@brand.getName()</option>
+			}
+		}
+	</select>
+
+	<button type="submit" class="btn">Search</button>
+</form>
+
+<table class='table table-striped table-bordered'>
+	<tr><th>Name</th><th>Price</th><th>Weight</th><th>Details</th></tr>
+	@for(product <- products) {
+		<tr>
+			<td>@product.getName()</td>
+			<td>@product.getWeight()</td>
+			<td>@product.getPrice()</td>
+			<td><a class='search' href='Product/@product.getId()'>
+			<i class='icon-search'></i>View
+			</a></td>
+		</tr>
+	}
+</table>
+}

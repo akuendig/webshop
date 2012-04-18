@@ -56,6 +56,7 @@
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\aopalliance\aopalliance\jars\aopalliance-1.0.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\org.sonatype.sisu.inject\cglib\jars\cglib-2.2.1-v20090111.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\asm\asm\jars\asm-3.1.jar" kind="lib"></classpathentry>
+  <classpathentry path="C:\Users\Adrian\.ivy2\cache\mysql\mysql-connector-java\jars\mysql-connector-java-5.1.12.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\play\play-test_2.9.1\jars\play-test_2.9.1-2.0.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\org.specs2\specs2_2.9.1\jars\specs2_2.9.1-1.7.1.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\Users\Adrian\.ivy2\cache\org.specs2\specs2-scalaz-core_2.9.1\jars\specs2-scalaz-core_2.9.1-6.0.1.jar" kind="lib"></classpathentry>

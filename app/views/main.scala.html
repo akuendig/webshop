@@ -7,12 +7,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-	    <link href="public/css/bootstrap.css" rel="stylesheet" type="text/css">
-	    <link href="public/css/main.css" rel="stylesheet" type="text/css">
+	    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+	    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
 	    
-	    <script type="text/javascript" src='public/js/html5.js' ></script>
-	    <script type="text/javascript" src='public/js/jquery-1.7.2.js' ></script>
-	    <script type="text/javascript" src='public/js/bootstrap.js' ></script>
+	    <script type="text/javascript" src='/assets/js/html5.js' ></script>
+	    <script type="text/javascript" src='/assets/js/jquery-1.7.2.js' ></script>
+	    <script type="text/javascript" src='/assets/js/bootstrap.js' ></script>
 	    <script type="text/javascript">
 	    	$(document).ready(function () {
 	    		$(".alert").alert();
@@ -36,40 +36,10 @@
 					</ul>
 					<p class='navbar-text pull-right'>
 						<a href='/User'>Login</a>
-@*************
-						<% if (user == null) { %>
-						<% } else { %>
-						Logged in as <a href='User'><%= user.getUsername() %></a>
-						<% } %>
-@*************
 					</p>
 				</div>
 			</div>
 		</div>
-@*************
-		<%
-		String error = (String) session.getAttribute("error");
-		String success = (String) session.getAttribute("success");
-		String message = (String) session.getAttribute("message");
-		
-		if (error != null && error != "") { %>
-		<div class="alert alert-error">
-			<a class="close" data-dismiss="alert">×</a>
-			<%= error %>
-		</div>
-		<% }
-		if (success != null && success != "") { %>
-		<div class="alert alert-success">
-			<a class="close" data-dismiss="alert">×</a>
-			<%= success %>
-		</div>
-		<% }
-		if (message != null && message != "") { %>
-		<div class="alert alert-info">
-			<a class="close" data-dismiss="alert">×</a>
-			<%= message %>
-		</div>
-****************************@
 		<div class='row'>
 			<div class='span3'>
 				<div class='well sidebar-nav'>
