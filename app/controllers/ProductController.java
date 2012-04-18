@@ -1,21 +1,14 @@
 package controllers;
 
-import java.util.List;
-import java.util.Map;
-
-import model.Product;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.product.list;
 
 import com.google.inject.Inject;
 
 import data.BrandRepository;
 import data.CategoryRepository;
 import data.ProductRepository;
-
-import play.mvc.*;
-import play.mvc.Http.RequestBody;
-import scala.annotation.target.param;
-
-import views.html.product.*;
 
 public class ProductController extends Controller {
 	

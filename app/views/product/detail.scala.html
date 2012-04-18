@@ -1,0 +1,70 @@
+@(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment], user : model.User)
+
+
+<h1>@product.getName()</h1>
+<hr />
+
+<table class='table table-striped table-bordered'>
+	<tr>
+		<th>Weight</th>
+		<td>@product.getWeight()</td>
+	</tr>
+	<tr>
+		<th>Price</th>
+		<td>@product.getPrice()</td>
+	</tr>
+	<tr>
+		<th>Origin</th>
+		<td>@origin.getCountryName()</td>
+	</tr>
+	<tr>
+		<th>Brand</th>
+		<td>@brand.getName()</td>
+	</tr>
+	<tr>
+		<th></th>
+		<td>
+			<form method='post' action='/product/product.getId()/like'>
+				<button type="submit" class="btn" @if(user != null) {"disabled"}>Like</button>
+			</form>
+		</td>
+	</tr>
+</table>
+
+@if(user != null) {
+	<form class='well form-inline' action="Product" method="get">
+		<input type="hidden" name="id" value='@product.getId()' />
+		<input type="number" name="quantity" placeholder='Qunantity' />
+		<button type="submit" class="btn">Add to shopping cart</button>
+	</form>
+	
+	<hr />
+}
+
+
+<table class='table table-striped table-bordered'>
+	<thead>
+		<tr>
+			<th>Comments</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for(comment <- comments) {
+			<tr>
+				<td>@comment.getText()</td>
+			</tr>
+		} 
+	</tbody>
+</table>
+
+
+
+@if(user != null) {
+	<form action="Product" method="get">
+		<input type="hidden" name="id" value='@product.getId()' /> <br>
+		<p>leave your comment here:</p>
+		<textarea name="user_comment" cols="50" rows="10"></textarea>
+		<br>
+		<button type="submit" class="btn btn-success">Send</button>
+	</form>
+}
