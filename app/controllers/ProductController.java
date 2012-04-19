@@ -1,9 +1,7 @@
 package controllers;
 
-import play.mvc.Controller;
-import play.mvc.Result;
-import views.html.product.detail;
-import views.html.product.list;
+import play.mvc.*;
+import views.html.product.*;
 
 import com.google.inject.Inject;
 
@@ -31,7 +29,12 @@ public class ProductController extends Controller {
 	static LikeRepository likeRepo;
 	
 	public static Result index() {
-		return ok(list.render(productRepo.getAll(), categoryRepo.getAll(), brandRepo.getAll(), 0, 0, null));
+		return ok(
+				list.render(
+						productRepo.getAll(),
+						categoryRepo.getAll(),
+						brandRepo.getAll(),
+						0, 0, null));
 	}
 
 	public static Result search(Long brandId, Long categoryId, String name) {
@@ -56,18 +59,27 @@ public class ProductController extends Controller {
 						commentRepo.getAllForProduct(product.getId()),
 						request().username()));
 	}
-	
+
+	@Security.Authenticated(Authenticated.class)
 	public static Result like(Long id) {
-		Like like = likeRepo.get(userId, id);
+
+		int userId = UserStore.getUserId();
+		Like like = likeRepo.get(userId, id.intValue());
 		
 		if (like == null) {
-			likeRepo.create(userId, id);
+			likeRepo.create(userId, id.intValue());
 			flash("success", "Your like has been registered!");
 		} else {
 			flash("message", "Your already liked this product!");
 		}
-		
+
 		return redirect(routes.ProductController.get(id));
+	}
+
+	@Security.Authenticated(Authenticated.class)
+	public static Result add(Long id, Long quantity) {
+
+		return TODO;
 	}
 
 }

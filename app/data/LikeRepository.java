@@ -8,7 +8,7 @@ public class LikeRepository extends BaseRepository<Like> {
 		super(Like.class);
 	}
 
-	public final Like get (int userId, String productId) {
+	public final Like get (int userId, int productId) {
 
 		return getResult(
 				"SELECT * " +
@@ -17,7 +17,7 @@ public class LikeRepository extends BaseRepository<Like> {
 				" AND Product_id = " + productId + " ");
 	}
 
-	public final void create (int userId, String productId) {
+	public final void create (int userId, int productId) {
 
 		execute("INSERT INTO user_likes_product " +
 				"VALUES ( " + userId + " , " + productId + ") ");

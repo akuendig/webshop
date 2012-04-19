@@ -13,5 +13,8 @@ GET		/product/:id				controllers.ProductController.get(id : Long)
 POST	/product/:id/like			controllers.ProductController.like(id : Long)
 POST	/product/:id/add			controllers.ProductController.add(id: Long, quantity : Long)
 
+GET		/user						controllers.UserController.index()
+POST	/user/login					controllers.UserController.login(user, password)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
