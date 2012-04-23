@@ -1,0 +1,17 @@
+@(userForm : Form[model.User])
+
+@import views.html.helper._
+@implicitBootstrapField = @{ FieldConstructor(bootstrapField.f) }
+
+@main("user") {
+
+@helper.form(action = routes.UserController.login(), 'class -> "well") {
+    
+    @helper.inputText(userForm("username"), '_label -> "Username")
+    
+    @helper.inputPassword(userForm("password"), '_label -> "Password")
+    
+	<button class='btn btn-success' type='submit'>Register</button>
+}
+
+} @* main *@

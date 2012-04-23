@@ -24,6 +24,7 @@
 
 	<body>
 
+@defining(session().get("username")) { user =>
 		<!-- Header -->
 		<div class='navbar navbar-fixed-top'>
 			<div class='navbar-inner'>
@@ -35,11 +36,18 @@
 						<li><a href='/recipe'>Recipes</a></li>
 					</ul>
 					<p class='navbar-text pull-right'>
-						<a href='/user'>Login</a>
+						<a href='/user'>
+							@if(user == null) {
+								Login
+							} else {
+								@user
+							}
+						</a>
 					</p>
 				</div>
 			</div>
 		</div>
+}
 		<div class='row'>
 			<div class='span3'>
 				<div class='well sidebar-nav'>

@@ -1,4 +1,5 @@
-@(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment], user : String)
+@(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment])
+@defining(session().get("username")) { user =>
 
 @main("Product") {
 
@@ -68,5 +69,6 @@
 		<br>
 		<button type="submit" class="btn btn-success">Send</button>
 	</form>
-}
-}
+} @** if **@
+} @** main **@
+} @** define user **@
