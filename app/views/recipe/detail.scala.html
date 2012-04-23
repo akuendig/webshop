@@ -1,0 +1,53 @@
+@(recipe : model.Recipe, ingredients : List[model.RecipeEntry])
+
+@import views.html.helper._
+@implicitBootstrapField = @{ FieldConstructor(bootstrapField.f) }
+
+@main("user") {
+
+<h1>Recipe Detail</h1>
+<br/>
+
+<table class='table table-striped table-bordered'>
+	<tr>
+		<th>Weight</th>
+		<td>@recipe.getName()</td>
+	</tr>
+	<tr>
+		<th>Preparation Time</th>
+		<td>@recipe.getPrep_time()</td>
+	</tr>
+	<tr>
+		<th>Total Cost</th>
+		<td>@recipe.getTotal_cost()</td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td>@recipe.getText()</td>
+	</tr>
+</table>
+
+<h1>Ingredients</h1>
+
+<br/>
+
+<table class='table table-striped table-bordered'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for(ingredient <- ingredients) {
+		<tr>
+			<td>@ingredient.getName()</td>
+			<td>@ingredient.getPrice()</td>
+			<td>@ingredient.getQuantity()</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+} @* main *@

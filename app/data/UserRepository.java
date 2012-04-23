@@ -19,15 +19,14 @@ public class UserRepository extends BaseRepository<User> {
 				"AND " + User.USER_PASSWORD + "='" + user.getPassword() + "'");
 	}
 	
-	public final User getUser(String username, String password) {
-		final User user = 
+	public final User getUser(User user) {
+		
+		return
 				getResult(
 				"SELECT * " +
 				"FROM tbluser " +
-				"WHERE " + User.USER_NAME + "='" + username + "' " +
-				"AND " + User.USER_PASSWORD + "='" + password + "'");
-
-		return user;
+				"WHERE " + User.USER_NAME + "='" + user.username + "' " +
+				"AND " + User.USER_PASSWORD + "='" + user.password + "'");
 	}
 
 	public final User getUserReg(String username) {

@@ -1,0 +1,52 @@
+@(user : model.User, entries : List[model.ShoppingCartEntry], products : Map[Integer, model.Product])
+
+@import views.html.helper._
+@implicitBootstrapField = @{ FieldConstructor(bootstrapField.f) }
+
+@main("Shopping Cart") {
+
+<h1>Shopping Cart</h1>
+
+<hr/>
+
+@if(user != null) {
+
+<p>
+	Hello
+	@user.getUsername()! Here is your shopping cart where you can
+	remove products already in your shopping cart. <br /> Happy buying =)
+</p>
+
+<table class='table table-striped table-bordered'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Weight</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for(entry <- entries) {
+		<tr>
+			<td>@products.get(entry.getProductId()).getName()</td>
+			<td>@products.get(entry.getProductId()).getWeight()</td>
+			<td>@products.get(entry.getProductId()).getPrice()</td>
+			<td>@entry.getQuantity()</td>
+			<td>
+				<form class='no-margin form-inline' action="/product/@entry.getProductId()/remove" method="post">
+					<input type='hidden' value='@entry.getQuantity()' name="quantity" />
+					<button type="submit" class='btn btn-mini'>
+						<i class='icon-remove'></i> Remove
+					</button>
+				</a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+} else {
+	<h4>Please login to view your shopping cart.</h4>
+}
+} @* main *@

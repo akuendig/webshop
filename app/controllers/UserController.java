@@ -1,27 +1,60 @@
 package controllers;
 
-import com.google.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
+import model.Product;
 import model.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+
+import com.google.inject.Inject;
+
+import data.ProductRepository;
+import data.ShoppingCartRepository;
+import data.UserRepository;
 
 public class UserController extends Controller {
     
     @Inject
-    static IUserStore userStore;
+    static UserStore userStore;
+    
+    @Inject
+    static UserRepository userRepo;
+
+    @Inject
+    static ProductRepository productRepo;
+    
+    @Inject
+    static ShoppingCartRepository shoppingRepo;
     
     public static Result index() {
-        
-        int userId = UserStore.getUserId();
+
         Form<User> userForm = form(User.class);
         
-        if (userId == 0) {
-            return ok(views.html.user.index.render(userForm));
+        if (UserStore.getUserId() == 0) {
+            return ok(views.html.user.index.render(userForm, null));
         } else {
-            return ok(views.html.user.index.render(userForm));
+            return ok(views.html.user.index.render(userForm, userRepo.getUserReg(UserStore.getUserName())));
         }
+    }
+
+    @Security.Authenticated(Authenticated.class)
+    public static Result shoppingCart() {
+    	
+    	int shoppingCartId = shoppingRepo.getIdForUser(UserStore.getUserId());
+    	Map<Integer, Product> products = new HashMap<Integer, Product>();
+    	
+    	for (Product product : productRepo.getProductsInShoppingCart(shoppingCartId)) {
+    		products.put(product.getId(), product);
+    	}
+    	
+    	return ok(views.html.user.shopping.render(
+    			userRepo.getUserReg(UserStore.getUserName()),
+    			shoppingRepo.getEntries(shoppingCartId),
+    			products));
     }
 
     public static Result login() {
@@ -36,7 +69,7 @@ public class UserController extends Controller {
         }
     }
 
-    public static Result register(String username, String password) {
+    public static Result register() {
 
         Form<User> userForm = form(User.class);
         User user = userForm.bindFromRequest().get();

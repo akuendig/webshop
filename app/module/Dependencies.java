@@ -8,7 +8,6 @@ import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Provides;
 
-import controllers.IUserStore;
 import controllers.UserStore;
 
 public class Dependencies implements Module {
@@ -20,7 +19,7 @@ public class Dependencies implements Module {
     public static final String DATABASE = "introdb2012";
 
     public void configure(Binder binder) {
-        binder.bind(IUserStore.class).to(UserStore.class);
+        binder.bind(UserStore.class);
     }
 
     @Provides

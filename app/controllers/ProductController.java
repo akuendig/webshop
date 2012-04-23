@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.List;
+import java.util.Map;
 
+import model.Comment;
 import model.Like;
 import model.Product;
 import play.mvc.Controller;
@@ -18,6 +20,8 @@ import data.CommentRepository;
 import data.LikeRepository;
 import data.OriginRepository;
 import data.ProductRepository;
+import data.ShoppingCartRepository;
+import data.UserRepository;
 
 public class ProductController extends Controller {
 
@@ -38,6 +42,15 @@ public class ProductController extends Controller {
 
     @Inject
     static LikeRepository likeRepo;
+    
+    @Inject
+    static UserStore userStore;
+    
+    @Inject
+    static UserRepository userRepo;
+    
+    @Inject
+    static ShoppingCartRepository shoppingRepo;
 
     public static Result index() {
 
@@ -105,9 +118,49 @@ public class ProductController extends Controller {
     }
 
     @Security.Authenticated(Authenticated.class)
-    public static Result add(Long id, Long quantity) {
+    public static Result comment(Long id) {
 
-        return TODO;
+        Comment comment = form(Comment.class).bindFromRequest().get();
+        
+        commentRepo.create(comment.text, comment.productId, comment.userId);
+
+        return redirect(routes.ProductController.get(id));
+    }
+
+    @Security.Authenticated(Authenticated.class)
+    public static Result add(Long id) {
+    	
+    	int quantity = 0;
+    	Map<String, String[]> form = request().body().asFormUrlEncoded();
+    	
+    	try {
+    		quantity = Integer.parseInt(form.get("quantity")[0]);
+		} catch (NumberFormatException e) { }
+    	
+		shoppingRepo.add(
+    		shoppingRepo.getIdForUser(UserStore.getUserId()),
+    		id.intValue(),
+    		quantity);
+    	
+        return redirect(routes.ProductController.get(id));
+    }
+
+    @Security.Authenticated(Authenticated.class)
+    public static Result remove(Long id) {
+
+    	int quantity = 0;
+    	Map<String, String[]> form = request().body().asFormUrlEncoded();
+    	
+    	try {
+    		quantity = Integer.parseInt(form.get("quantity")[0]);
+		} catch (NumberFormatException e) { }
+    	
+    	shoppingRepo.remove(
+    		shoppingRepo.getIdForUser(UserStore.getUserId()),
+    		id.intValue(),
+    		quantity);
+    	
+        return redirect(routes.UserController.shoppingCart());
     }
 
 }

@@ -9,10 +9,14 @@ import data.UserRepository;
 import play.mvc.*;
 import play.mvc.Http.Context;
 
-public class UserStore implements IUserStore {
+public class UserStore {
+
+    UserRepository userRepo;
 
     @Inject
-    static UserRepository userRepo;
+    public UserStore(UserRepository repo) {
+    	userRepo = repo;
+    }
 
     public static int getUserId() {
         String userIdString = ctx().session().get("userid");
@@ -28,13 +32,11 @@ public class UserStore implements IUserStore {
         return ctx().session().get("username");
     }
 
-    /* (non-Javadoc)
-     * @see controllers.IUserStore#authenticate(model.User)
-     */
-    @Override
     public boolean authenticate(User user) {
 
-        if (userRepo.contains(user)) {
+    	user = userRepo.getUser(user);
+    	
+        if (user != null) {
             ctx().session().put("userid", String.valueOf(user.getId()));
             ctx().session().put("username", user.getUsername());
 
@@ -44,10 +46,6 @@ public class UserStore implements IUserStore {
         }
     }
 
-    /* (non-Javadoc)
-     * @see controllers.IUserStore#register(model.User)
-     */
-    @Override
     public boolean register(User user) {
 
         if (userRepo.contains(user)) {

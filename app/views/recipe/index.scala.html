@@ -1,0 +1,42 @@
+@(recipes : List[model.Recipe])
+
+@import views.html.helper._
+@implicitBootstrapField = @{ FieldConstructor(bootstrapField.f) }
+
+@main("user") {
+
+<h1>Recipes</h1>
+<hr/>
+
+<form class='well form-inline' method="get" action="Recipes">
+	<input type="hidden" name="filter" value="name" />
+	<input type="text" name="name" placeholder='Name'/>
+	<button class='btn' type="submit">Search</button>
+</form>
+
+<table class='table table-striped table-bordered'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Preparation Time</th>
+			<th>Total Cost</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for(recipe <- recipes) {
+		<tr>
+			<td>@recipe.getName()</td>
+			<td>@recipe.getPrep_time()</td>
+			<td>@recipe.getTotal_cost()</td>
+			<td>
+				<a class='search' href='/recipe/@recipe.getId()'>
+					<i class='icon-search'></i>View
+				</a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+} @* main *@

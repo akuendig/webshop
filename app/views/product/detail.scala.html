@@ -1,5 +1,6 @@
 @(product : model.Product, brand : model.Brand, origin : model.Origin, comments : List[model.Comment])
 @defining(session().get("username")) { user =>
+@defining(session().get("userid")) { userId =>
 
 @main("Product") {
 
@@ -26,16 +27,15 @@
 	<tr>
 		<th></th>
 		<td>
-			<form class='form-inline' method='post' action='/product/@product.getId()/like'>
-				<button type="submit" class="btn" @if(user == null){disabled}>Like</button>
+			<form class='no-margin form-inline' method='post' action='/product/@product.getId()/like'>
+				<button type="submit" class="btn btn-small btn-success" @if(user == null){disabled}>Like</button>
 			</form>
 		</td>
 	</tr>
 </table>
 
 @if(user != null) {
-	<form class='well form-inline' action="Product" method="get">
-		<input type="hidden" name="id" value='@product.getId()' />
+	<form class='well form-inline' action="/product/@product.getId()/add" method="post">
 		<input type="number" name="quantity" placeholder='Qunantity' />
 		<button type="submit" class="btn">Add to shopping cart</button>
 	</form>
@@ -62,13 +62,15 @@
 
 
 @if(user != null) {
-	<form action="Product" method="get">
-		<input type="hidden" name="id" value='@product.getId()' /> <br>
-		<p>leave your comment here:</p>
-		<textarea name="user_comment" cols="50" rows="10"></textarea>
-		<br>
+	<form action="/product/@product.getId()/comment" method="post">
+		<input type="hidden" name="userId" value='@userId' />
+		<input type="hidden" name="productId" value='@product.getId()' />
+		<label>Leave your comment here:</label>
+		<textarea name="text" cols="50" rows="10"></textarea>
+		<br />
 		<button type="submit" class="btn btn-success">Send</button>
 	</form>
 } @** if **@
 } @** main **@
+} @** define userId **@
 } @** define user **@

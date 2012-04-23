@@ -1,6 +1,9 @@
 @session = @{
 	Http.Context.current().session()
 }
+@flash = @{
+	Http.Context.current().flash()
+}
 @request = @{
 	Http.Context.current().request()
 }

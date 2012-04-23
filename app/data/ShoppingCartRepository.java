@@ -48,7 +48,7 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 				"WHERE SC_ID = " + shoppingCartId);
 	}
 	
-	public final ShoppingCartEntry getEntry(int shoppingCartId, String productId) {
+	public final ShoppingCartEntry getEntry(int shoppingCartId, int productId) {
 		
 		return getResult(
 				"SELECT * " +
@@ -56,7 +56,7 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 				"WHERE SC_ID = "+shoppingCartId+" AND SC_Product_ID = "+productId+" ");
 	}
 	
-	public final void add(int shoppingCartId, String productId, int quantity) {
+	public final void add(int shoppingCartId, int productId, int quantity) {
 		
 		ShoppingCartEntry entry = getEntry(shoppingCartId, productId);
 		
@@ -74,9 +74,20 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 		
 	}
 	
-	public final void remove(int scid, String productid) {
-		execute("DELETE FROM shoppingcart_contains_product "+
-				"WHERE SC_ID = "+scid+ " AND SC_Product_ID = "+productid+" ");
-	}
+	public final void remove(int shoppingCartId, int productId, int quantity) {
 
+		ShoppingCartEntry entry = getEntry(shoppingCartId, productId);
+			
+		if (entry == null) {
+			return;
+		} else if (entry.getQuantity() <= quantity) {
+			execute("DELETE FROM shoppingcart_contains_product "+
+					"WHERE SC_ID = "+ shoppingCartId + " AND SC_Product_ID = " + productId + " ");
+		} else {
+			execute("UPDATE shoppingcart_contains_product " +
+					"SET SC_contains_Prd_Quantity = SC_contains_Prd_Quantity + " + (entry.getQuantity() - quantity) + " " +
+					"WHERE SC_ID = " + shoppingCartId +
+					" AND SC_Product_ID = " + productId +" ");
+		}
+	}
 }

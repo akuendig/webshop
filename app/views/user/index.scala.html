@@ -1,17 +1,43 @@
-@(userForm : Form[model.User])
+@(userForm : Form[model.User], user : model.User)
 
 @import views.html.helper._
 @implicitBootstrapField = @{ FieldConstructor(bootstrapField.f) }
 
 @main("user") {
 
-@helper.form(action = routes.UserController.login(), 'class -> "well") {
-    
-    @helper.inputText(userForm("username"), '_label -> "Username")
-    
-    @helper.inputPassword(userForm("password"), '_label -> "Password")
-    
-	<button class='btn btn-success' type='submit'>Register</button>
+<h1>User Details</h1>
+<hr />
+
+@if(user == null) {
+	@helper.form(action = routes.UserController.register(), 'class -> "well span-4") {
+	    
+	    @helper.inputText(userForm("username"), '_label -> "Username")
+	    
+	    @helper.inputPassword(userForm("password"), '_label -> "Password")
+	    
+		<button class='btn btn-success' type='submit'>Register</button>
+	}
+
+	@helper.form(action = routes.UserController.login(), 'class -> "well span-4") {
+	    
+	    @helper.inputText(userForm("username"), '_label -> "Username")
+	    
+	    @helper.inputPassword(userForm("password"), '_label -> "Password")
+	    
+		<button class='btn btn-success' type='submit'>Login</button>
+	}
+} else {
+	
+	<table class='table table-striped table-bordered'>
+		<tr>
+			<th>Username</th>
+			<td>@user.getUsername()</td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td>@user.getPassword()</td>
+		</tr>
+	</table>
 }
 
 } @* main *@
