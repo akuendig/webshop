@@ -1,5 +1,6 @@
-package data;
+package data.database;
 
+import data.IOriginRepository;
 import model.Origin;
 
 

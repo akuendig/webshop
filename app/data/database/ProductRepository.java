@@ -1,6 +1,8 @@
-package data;
+package data.database;
 
 import java.util.List;
+
+import data.IProductRepository;
 
 import model.Product;
 

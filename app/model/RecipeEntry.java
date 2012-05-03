@@ -11,15 +11,18 @@ public class RecipeEntry {
 	public static final String PRODUCT_PRICE = "ProductPrice";
 	public static final String PRODUCT_NAME = "ProductName";
 	
-	private final int recipe_id;
-	private final int product_id;
-	private final int quantity;
-	private final int price;
-	private final String name;
+	private int recipeId;
+	private int productId;
+	private int quantity;
+	private int price;
+	private String name;
+	
+	public RecipeEntry() {
+	}
 
 	public RecipeEntry(final ResultSet rs) throws SQLException {
-		this.product_id = rs.getInt(PRODUCT_ID);
-		this.recipe_id = rs.getInt(RECIPE_ID);
+		this.productId = rs.getInt(PRODUCT_ID);
+		this.recipeId = rs.getInt(RECIPE_ID);
 		this.quantity = rs.getInt(QUANTITY);
 		this.price = rs.getInt(PRODUCT_PRICE);
 		this.name = rs.getString(PRODUCT_NAME);
@@ -29,19 +32,39 @@ public class RecipeEntry {
 		return quantity;
 	}
 
-	public int getProduct_id() {
-		return product_id;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
-	public int getRecipe_id() {
-		return recipe_id;
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public int getRecipeId() {
+		return recipeId;
+	}
+
+	public void setRecipeId(int recipeId) {
+		this.recipeId = recipeId;
 	}
 	
 	public int getPrice() {
 		return price;
 	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

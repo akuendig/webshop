@@ -4,20 +4,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * This class represents a Brand of products (i.e. Nestle, Barilla etc) 
+ * This class represents a Brand of products (i.e. Nestle, Barilla etc)
  */
 public final class Brand {
 
 	public static final String BRAND_ID = "Brand_ID";
 	public static final String BRAND_NAME = "BrandName";
-	
-	private final int id;
-	private final String name;
 
-	public Brand(final String name) {
-		super();
-		this.id = 0;
-		this.name = name;
+	private int id;
+	private String name;
+
+	public Brand() {
 	}
 
 	public Brand(final ResultSet rs) throws SQLException {
@@ -29,8 +26,16 @@ public final class Brand {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

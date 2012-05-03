@@ -1,5 +1,6 @@
-package data;
+package data.database;
 
+import data.ILikeRepository;
 import model.Like;
 
 public class LikeRepository extends BaseRepository<Like> implements ILikeRepository {

@@ -1,8 +1,10 @@
-package data;
+package data.database;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
+
+import data.ICommentRepository;
 
 import model.Comment;
 

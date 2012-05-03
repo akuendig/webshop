@@ -11,8 +11,11 @@ public final class Category {
 	public static final String CATEGORY_ID = "Category_ID";
 	public static final String CATEGORY_NAME = "CategoryName";
 	
-	private final int id;
-	private final String name;
+	private int id;
+	private String name;
+	
+	public Category() {
+	}
 
 	public Category(final String name) {
 		super();
@@ -29,8 +32,16 @@ public final class Category {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

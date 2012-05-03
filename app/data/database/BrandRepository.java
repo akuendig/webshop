@@ -1,6 +1,8 @@
-package data;
+package data.database;
 
 import java.util.List;
+
+import data.IBrandRepository;
 
 import model.Brand;
 

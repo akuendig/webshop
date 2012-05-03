@@ -14,13 +14,16 @@ public final class Product {
 	/**
 	 * TODO The properties of the items should be added here
 	 */
-	private final int id;
-	private final String name;
-	private final int weight;
-	private final int price;
-	private final int brand_id;
-	private final int origin_id;
+	private int id;
+	private String name;
+	private int weight;
+	private int price;
+	private int brandId;
+	private int originId;
 	
+	public Product() {
+	}
+
 	public Product(
 		final ResultSet rs
 	) throws SQLException {
@@ -28,8 +31,8 @@ public final class Product {
 		this.name = rs.getString(PRODUCT_NAME);
 		this.weight = rs.getInt(PRODUCT_WEIGHT);
 		this.price  = rs.getInt(PRODUCT_PRICE);
-		this.brand_id = rs.getInt(PRODUCT_BRAND_ID);
-		this.origin_id = rs.getInt(PRODUCT_ORIGIN_ID);
+		this.brandId = rs.getInt(PRODUCT_BRAND_ID);
+		this.originId = rs.getInt(PRODUCT_ORIGIN_ID);
 	}
 
 	/**
@@ -37,28 +40,53 @@ public final class Product {
 	 * "Generate Getters and Setters to auto-magically generate
 	 * the getters. 
 	 */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public int getId() {
-		return id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getWeight() {
 		return weight;
 	}
 
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
 	public int getPrice() {
 		return price;
 	}
 
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getBrandId() {
-		return brand_id;
+		return brandId;
+	}
+
+	public void setBrandId(int brand_id) {
+		this.brandId = brand_id;
 	}
 
 	public int getOriginId() {
-		return origin_id;
+		return originId;
+	}
+
+	public void setOriginId(int origin_id) {
+		this.originId = origin_id;
 	}
 		
 }

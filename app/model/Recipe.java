@@ -12,37 +12,60 @@ public final class Recipe {
 	public static final String RECIPE_TEXT = "RecipeText";
 	public static final String TOTAL_COST = "TotalCost";
 	
-	private final int id;
-	private final String name;
-	private final Time prep_time;
-	private final String text;
-	private final Float total_cost;
+	private int id;
+	private String name;
+	private Time prepTime;
+	private String text;
+	private Float totalCost;
+	
+	public Recipe() {
+	}
 
 	public Recipe(final ResultSet rs) throws SQLException {
 		this.id = rs.getInt(RECIPE_ID);
 		this.name = rs.getString(RECIPE_NAME);
-		this.prep_time = rs.getTime(RECIPE_PREP_TIME);
+		this.prepTime = rs.getTime(RECIPE_PREP_TIME);
 		this.text = rs.getString(RECIPE_TEXT);
-		this.total_cost = rs.getFloat(TOTAL_COST);
+		this.totalCost = rs.getFloat(TOTAL_COST);
 	}
 
 	public int getId() {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Time getPrepTime() {
+		return prepTime;
+	}
+
+	public void setPrepTime(Time prepTime) {
+		this.prepTime = prepTime;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public Time getPrep_time() {
-		return prep_time;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getText() {
 		return text;
 	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
 	
-	public Float getTotal_cost() {
-		return total_cost;
+	public Float getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(Float totalCost) {
+		this.totalCost = totalCost;
 	}
 }

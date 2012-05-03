@@ -7,9 +7,12 @@ public class Origin {
 
 	public static final String ORIGIN_ID = "Origin_ID";
 	public static final String ORIGIN_COUNTRY_NAME = "OriginCountryName";
-	
-	private final int id;
-	private final String countryName;
+
+	private int id;
+	private String countryName;
+
+	public Origin() {
+	}
 
 	public Origin(final ResultSet rs) throws SQLException {
 		this.id = rs.getInt(ORIGIN_ID);
@@ -20,7 +23,15 @@ public class Origin {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getCountryName() {
 		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 }

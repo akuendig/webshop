@@ -9,6 +9,24 @@ import com.google.inject.Module;
 import com.google.inject.Provides;
 
 import controllers.UserStore;
+import data.IBrandRepository;
+import data.ICategoryRepository;
+import data.ICommentRepository;
+import data.ILikeRepository;
+import data.IOriginRepository;
+import data.IProductRepository;
+import data.IRecipeRepository;
+import data.IShoppingCartRepository;
+import data.IUserRepository;
+import data.database.BrandRepository;
+import data.database.CategoryRepository;
+import data.database.CommentRepository;
+import data.database.LikeRepository;
+import data.database.OriginRepository;
+import data.database.ProductRepository;
+import data.database.RecipeRepository;
+import data.database.ShoppingCartRepository;
+import data.database.UserRepository;
 
 public class Dependencies implements Module {
 
@@ -20,6 +38,16 @@ public class Dependencies implements Module {
 
     public void configure(Binder binder) {
         binder.bind(UserStore.class);
+        
+        binder.bind(IBrandRepository.class).to(BrandRepository.class);
+        binder.bind(ICategoryRepository.class).to(CategoryRepository.class);
+        binder.bind(ICommentRepository.class).to(CommentRepository.class);
+        binder.bind(ILikeRepository.class).to(LikeRepository.class);
+        binder.bind(IOriginRepository.class).to(OriginRepository.class);
+        binder.bind(IProductRepository.class).to(ProductRepository.class);
+        binder.bind(IRecipeRepository.class).to(RecipeRepository.class);
+        binder.bind(IShoppingCartRepository.class).to(ShoppingCartRepository.class);
+        binder.bind(IUserRepository.class).to(UserRepository.class);
     }
 
     @Provides
