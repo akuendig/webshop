@@ -7,12 +7,16 @@ import java.util.List;
 import model.Comment;
 
 
-public class CommentRepository extends BaseRepository<Comment> {
+public class CommentRepository extends BaseRepository<Comment> implements ICommentRepository {
 
 	public CommentRepository() {
 		super(Comment.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.ICommentRepository#getAllForProduct(int)
+	 */
+	@Override
 	public final List<Comment> getAllForProduct(int productId) {
 
 		return getResults(
@@ -22,6 +26,10 @@ public class CommentRepository extends BaseRepository<Comment> {
 				"ORDER BY c.CommentTime ");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.ICommentRepository#create(java.lang.String, int, int)
+	 */
+	@Override
 	public final void create(String comment, int productId, int userId) {
 
 		long timeNow = Calendar.getInstance().getTimeInMillis();

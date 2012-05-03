@@ -12,12 +12,16 @@ import model.Recipe;
 import model.RecipeEntry;
 import model.RecipeOrder;
 
-public class RecipeRepository  extends BaseRepository<Recipe> {
+public class RecipeRepository  extends BaseRepository<Recipe> implements IRecipeRepository {
 
 	public RecipeRepository() {
 		super(Recipe.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IRecipeRepository#getByName(java.lang.String, model.RecipeOrder)
+	 */
+	@Override
 	public final List<Recipe> getByName(String name, RecipeOrder order) {
 		
 		String orderString = "";
@@ -52,6 +56,10 @@ public class RecipeRepository  extends BaseRepository<Recipe> {
 				orderString);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IRecipeRepository#getById(int)
+	 */
+	@Override
 	public final Recipe getById (final int id) {
 
 		return
@@ -68,6 +76,10 @@ public class RecipeRepository  extends BaseRepository<Recipe> {
 				"WHERE Recipe_ID = " + id + " ");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IRecipeRepository#getEngredientsById(int)
+	 */
+	@Override
 	public final List<RecipeEntry> getEngredientsById(final int id) {
 
 		List<RecipeEntry> results = new ArrayList<RecipeEntry>();

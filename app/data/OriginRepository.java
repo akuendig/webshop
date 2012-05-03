@@ -3,12 +3,16 @@ package data;
 import model.Origin;
 
 
-public class OriginRepository extends BaseRepository<Origin> {
+public class OriginRepository extends BaseRepository<Origin> implements IOriginRepository {
 
 	public OriginRepository() {
 		super(Origin.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IOriginRepository#getById(int)
+	 */
+	@Override
 	public final Origin getById(int id) {
 		return getResult(
 				"SELECT * " +

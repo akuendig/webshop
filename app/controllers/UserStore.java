@@ -4,17 +4,17 @@ import model.User;
 
 import com.google.inject.Inject;
 
-import data.UserRepository;
+import data.IUserRepository;
 
 import play.mvc.*;
 import play.mvc.Http.Context;
 
 public class UserStore {
 
-    UserRepository userRepo;
+    IUserRepository userRepo;
 
     @Inject
-    public UserStore(UserRepository repo) {
+    public UserStore(IUserRepository repo) {
     	userRepo = repo;
     }
 

@@ -8,18 +8,26 @@ import java.util.List;
 import model.ShoppingCartEntry;
 
 
-public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
+public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry> implements IShoppingCartRepository{
 
 	public ShoppingCartRepository() {
 		super(ShoppingCartEntry.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#create(int)
+	 */
+	@Override
 	public final void create(int userId) {
 		
 		execute("INSERT INTO tblshoppingcart (`SC_ID` ,`SC_User_ID`) " +
 				"VALUES (NULL, " + userId + " )");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#getIdForUser(int)
+	 */
+	@Override
 	public final int getIdForUser(int userId){
 
 		String query =
@@ -41,6 +49,10 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 		return 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#getEntries(int)
+	 */
+	@Override
 	public final List<ShoppingCartEntry> getEntries(int shoppingCartId){
 		return getResults(
 				"SELECT * " +
@@ -48,6 +60,10 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 				"WHERE SC_ID = " + shoppingCartId);
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#getEntry(int, int)
+	 */
+	@Override
 	public final ShoppingCartEntry getEntry(int shoppingCartId, int productId) {
 		
 		return getResult(
@@ -56,6 +72,10 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 				"WHERE SC_ID = "+shoppingCartId+" AND SC_Product_ID = "+productId+" ");
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#add(int, int, int)
+	 */
+	@Override
 	public final void add(int shoppingCartId, int productId, int quantity) {
 		
 		ShoppingCartEntry entry = getEntry(shoppingCartId, productId);
@@ -74,6 +94,10 @@ public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry>{
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IShoppingCartRepository#remove(int, int, int)
+	 */
+	@Override
 	public final void remove(int shoppingCartId, int productId, int quantity) {
 
 		ShoppingCartEntry entry = getEntry(shoppingCartId, productId);

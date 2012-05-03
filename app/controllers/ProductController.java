@@ -14,43 +14,43 @@ import views.html.product.list;
 
 import com.google.inject.Inject;
 
-import data.BrandRepository;
-import data.CategoryRepository;
-import data.CommentRepository;
-import data.LikeRepository;
-import data.OriginRepository;
-import data.ProductRepository;
-import data.ShoppingCartRepository;
-import data.UserRepository;
+import data.IBrandRepository;
+import data.ICategoryRepository;
+import data.ICommentRepository;
+import data.ILikeRepository;
+import data.IOriginRepository;
+import data.IProductRepository;
+import data.IShoppingCartRepository;
+import data.IUserRepository;
 
 public class ProductController extends Controller {
 
     @Inject
-    static CategoryRepository categoryRepo;
+    static ICategoryRepository categoryRepo;
 
     @Inject
-    static ProductRepository productRepo;
+    static IProductRepository productRepo;
 
     @Inject
-    static BrandRepository brandRepo;
+    static IBrandRepository brandRepo;
 
     @Inject
-    static OriginRepository originRepo;
+    static IOriginRepository originRepo;
 
     @Inject
-    static CommentRepository commentRepo;
+    static ICommentRepository commentRepo;
 
     @Inject
-    static LikeRepository likeRepo;
+    static ILikeRepository likeRepo;
     
     @Inject
     static UserStore userStore;
     
     @Inject
-    static UserRepository userRepo;
+    static IUserRepository userRepo;
     
     @Inject
-    static ShoppingCartRepository shoppingRepo;
+    static IShoppingCartRepository shoppingRepo;
 
     public static Result index() {
 

@@ -4,12 +4,16 @@ import java.util.List;
 
 import model.Brand;
 
-public class BrandRepository extends BaseRepository<Brand>{
+public class BrandRepository extends BaseRepository<Brand> implements IBrandRepository{
 
 	public BrandRepository() {
 		super(Brand.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IBrandRepository#getAll()
+	 */
+	@Override
 	public final List<Brand> getAll() {
 
 		return getResults(
@@ -17,6 +21,10 @@ public class BrandRepository extends BaseRepository<Brand>{
 				"FROM tblbrand ");
 	}
 	
+	/* (non-Javadoc)
+	 * @see data.IBrandRepository#getById(int)
+	 */
+	@Override
 	public final Brand getById(int id) {
 		
 		return getResult(

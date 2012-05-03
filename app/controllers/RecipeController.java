@@ -8,12 +8,12 @@ import play.mvc.Result;
 
 import com.google.inject.Inject;
 
-import data.RecipeRepository;
+import data.IRecipeRepository;
 
 public class RecipeController extends Controller {
 	
 	@Inject
-	static RecipeRepository recipeRepo;
+	static IRecipeRepository recipeRepo;
 
 	public static Result index() {
 

@@ -5,12 +5,16 @@ import java.util.List;
 import model.Product;
 
 
-public class ProductRepository extends BaseRepository<Product> {
+public class ProductRepository extends BaseRepository<Product> implements IProductRepository {
 
 	public ProductRepository() {
 		super(Product.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getById(int)
+	 */
+	@Override
 	public final Product getById(final int id) {
 
 		return getResult(
@@ -19,6 +23,10 @@ public class ProductRepository extends BaseRepository<Product> {
 				"WHERE Product_ID="+id);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getAll()
+	 */
+	@Override
 	public final List<Product> getAll() {
 
 		return getResults(
@@ -27,6 +35,10 @@ public class ProductRepository extends BaseRepository<Product> {
 				"ORDER BY ProductName ");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getRefined(java.lang.String, int, int)
+	 */
+	@Override
 	public final List<Product> getRefined(String name, int categoryId, int brandId) {
 		String query =
 				"SELECT * " +
@@ -57,6 +69,10 @@ public class ProductRepository extends BaseRepository<Product> {
 		return getResults(query);
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getByName(java.lang.String)
+	 */
+	@Override
 	public final List<Product> getByName(final String name) {
 
 		return getResults(
@@ -66,6 +82,10 @@ public class ProductRepository extends BaseRepository<Product> {
 				"ORDER BY ProductName ");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getByCategory(java.lang.String)
+	 */
+	@Override
 	public final List<Product> getByCategory(final String categoryId) {
 
 		return getResults(
@@ -80,6 +100,10 @@ public class ProductRepository extends BaseRepository<Product> {
 				"ORDER BY p.ProductName"); // ManuZeile
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getByBrand(java.lang.String)
+	 */
+	@Override
 	public final List<Product> getByBrand(final String brandId) {
 
 		return getResults(
@@ -90,6 +114,10 @@ public class ProductRepository extends BaseRepository<Product> {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getByPopularity()
+	 */
+	@Override
 	public final List<Product> getByPopularity() {
 		return getResults(
 	            "SELECT * " +
@@ -105,6 +133,10 @@ public class ProductRepository extends BaseRepository<Product> {
 	            "ORDER BY cnt DESC, ProductName ASC; ");
 	}
 
+	/* (non-Javadoc)
+	 * @see data.IProductRepository#getProductsInShoppingCart(int)
+	 */
+	@Override
 	public final List<Product> getProductsInShoppingCart(int shoppingCartId) {
 
 		return getResults(

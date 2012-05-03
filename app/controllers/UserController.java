@@ -12,9 +12,9 @@ import play.mvc.Security;
 
 import com.google.inject.Inject;
 
-import data.ProductRepository;
-import data.ShoppingCartRepository;
-import data.UserRepository;
+import data.IProductRepository;
+import data.IShoppingCartRepository;
+import data.IUserRepository;
 
 public class UserController extends Controller {
     
@@ -22,13 +22,13 @@ public class UserController extends Controller {
     static UserStore userStore;
     
     @Inject
-    static UserRepository userRepo;
+    static IUserRepository userRepo;
 
     @Inject
-    static ProductRepository productRepo;
+    static IProductRepository productRepo;
     
     @Inject
-    static ShoppingCartRepository shoppingRepo;
+    static IShoppingCartRepository shoppingRepo;
     
     public static Result index() {
 
