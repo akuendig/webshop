@@ -1,3 +1,11 @@
+http://typesafe.com/stack/download
+
+
+
+
+
+
+
 ========================
 HOW TO USE THIS TEMPLATE
 ========================
