@@ -1,20 +1,30 @@
 package data.filesystem;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class TableLocator {
 	
-	public Path getFolder(String tableName) {
+	public static String FILE_EXTENSION = ".entry";
+	
+	public static Path getFolder(String tableName) {
 		
 		switch (tableName) {
 		case "tblBrand":
-			Path path = FileSystems.getDefault().getPath(getBase() + "/brand");
-			
-			if (path.toFile().exists()) {
-				return path;
-			} else if (path.toFile().mkdir()) {
-				return path;
+			try {
+				Path path = Paths.get(getBase()).resolve("brand/");
+				
+				if (path.toFile().exists()) {
+					return path;
+				} else if (path.toFile().mkdir()) {
+					return path;
+				}
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			break;
 
@@ -25,7 +35,7 @@ public class TableLocator {
 		return null;
 	}
 	
-	private String getBase() {
-		return BaseRepository.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+	private static URI getBase() throws URISyntaxException {
+		return BaseRepository.class.getProtectionDomain().getCodeSource().getLocation().toURI();
 	}
 }

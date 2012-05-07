@@ -5,10 +5,23 @@ import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.google.inject.Inject;
+
 import model.Brand;
 import data.IBrandRepository;
 
-public class BrandRepository extends BaseRepository implements IBrandRepository {
+public class BrandRepository extends BaseRepository<Brand> implements IBrandRepository {
+
+	protected BrandRepository() {
+		super("tblBrand");
+
+		try {
+			super.initialize();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public List<Brand> getAll() {
@@ -21,15 +34,4 @@ public class BrandRepository extends BaseRepository implements IBrandRepository 
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private static Brand parse(String text) {
-		try {
-			return mapper.readValue(text, Brand.class);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 }

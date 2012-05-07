@@ -27,6 +27,7 @@ import data.database.ProductRepository;
 import data.database.RecipeRepository;
 import data.database.ShoppingCartRepository;
 import data.database.UserRepository;
+import data.filesystem.TableLocator;
 
 public class Dependencies implements Module {
 
@@ -38,8 +39,9 @@ public class Dependencies implements Module {
 
     public void configure(Binder binder) {
         binder.bind(UserStore.class);
+        binder.bind(TableLocator.class);
         
-        binder.bind(IBrandRepository.class).to(BrandRepository.class);
+        binder.bind(IBrandRepository.class).to(data.filesystem.BrandRepository.class);
         binder.bind(ICategoryRepository.class).to(CategoryRepository.class);
         binder.bind(ICommentRepository.class).to(CommentRepository.class);
         binder.bind(ILikeRepository.class).to(LikeRepository.class);

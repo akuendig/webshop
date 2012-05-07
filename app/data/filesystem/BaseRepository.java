@@ -1,94 +1,74 @@
 package data.filesystem;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.DirectoryStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Iterator;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 import com.google.inject.Inject;
 
-import fj.F;
 import fj.data.Array;
 
 
 public abstract class BaseRepository<T> {
 
-	@Inject
-	TableLocator locator;
+	final String tableName;
 	
-	ObjectMapper mapper = new ObjectMapper();
-
-	Class<T> clazz;
-	String tableName;
+	ArrayList<T> entries;
 	
-	protected BaseRepository(String tableName, Class<T> clazz) {
+	protected Array<T> getQuery() {
+		return Array.iterableArray(entries);
+	}
+	
+	protected BaseRepository(String tableName) {
 		this.tableName = tableName;
-		this.clazz = clazz;
 	}
-
-	protected Array<Path> getFiles() {
-
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(locator
-				.getFolder(tableName))) {
-			
-			return Array.iterableArray(stream);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	protected boolean initialize() throws IOException, ClassNotFoundException {
+		Path table = getTableFile();
+		ObjectMapper o = new ObjectMapper();
 		
-		return Array.empty();
-	}
-	
-	protected Array<String> read(Array<Path> files) {
-		return
-			files
-			.map(new F<Path, String>() {
-				public String f(Path path) {
-					
-					try {
-						return
-							join(Files.readAllLines(path, Charset.forName("UTF-8")));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					return "";
+		if (table.toFile().isFile()) {
+			try (InputStream stream = Files.newInputStream(table)) {
+				try (ObjectInputStream in = new ObjectInputStream(stream)) {
+					entries = o.readValue(in, new TypeReference<ArrayList<T>>() { });
+					return true;
 				}
-			});
-	}
-	
-	protected Array<T> parse(Array<String> entries) {
-		return
-			entries
-			.map(new F<String, T>() {
-				public T f(String entry) {
-					try {
-						return mapper.readValue(entry, clazz);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						return null;
-					}
-				}
-			});
-	}
-
-	protected String join(Iterable<String> s) {
-
-		StringBuilder builder = new StringBuilder();
-		Iterator<String> iter = s.iterator();
-
-		while (iter.hasNext()) {
-			builder.append(iter.next());
+			}
+		} else if (table.toFile().createNewFile()) {
+			entries = new ArrayList<T>();
+			return true;
+		} else {
+			return false;
 		}
-
-		return builder.toString();
+	}
+	
+	protected boolean save() throws IOException, ClassNotFoundException {
+		Path table = getTableFile();
+		ObjectMapper o = new ObjectMapper();
+		
+		if (table.toFile().isFile() || table.toFile().createNewFile()) {
+			try (OutputStream stream = Files.newOutputStream(table, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE)) {
+				try (ObjectOutputStream out = new ObjectOutputStream(stream)) {
+					o.writeValue(out, entries);
+					return true;
+				}
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	private Path getTableFile() {
+		
+		return TableLocator.getFolder(tableName).resolve("all.table");
 	}
 }

@@ -27,8 +27,8 @@
 		@for(recipe <- recipes) {
 		<tr>
 			<td>@recipe.getName()</td>
-			<td>@recipe.getPrep_time()</td>
-			<td>@recipe.getTotal_cost()</td>
+			<td>@recipe.getPrepTime()</td>
+			<td>@recipe.getTotalCost()</td>
 			<td>
 				<a class='search' href='/recipe/@recipe.getId()'>
 					<i class='icon-search'></i>View
