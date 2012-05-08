@@ -22,6 +22,19 @@
 10. Back in console run `play run`
 11. Open http://localhost:9000
 
+### Debugging
+
+To be able to debug with eclipse you need to add the following Environment Variable:
+*SBT_OPTS* with the value `-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9999`
+after that the command `sbt` will automatically open a debug port at `localhost:9999`.
+Now go into eclipse
+
+1. Choose the webshop project
+2. Click *DebugAs*
+3. Select *Remote Java Application* and enter `9999` as the port, choose a sutable name
+4. Click *Apply* and the *Debug*
+5. Now you should be able to set breakpoints and all inside eclipse
+
 ### Old Info from Playframework
 
 * install sbt 0.11.2  if you do not have it already. You can get it from here: https://github.com/harrah/xsbt/wiki/Getting-Started-Setup
