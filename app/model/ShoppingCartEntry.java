@@ -3,7 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ShoppingCartEntry {
+public class ShoppingCartEntry extends EntityBase {
 	private int shoppingCartId;
 	private int productId;
 	private int quantity;

@@ -8,14 +8,12 @@ import play.data.validation.Constraints.Required;
 /**
  * Object that represents a registered in user.
  */
-public final class User {
+public final class User extends EntityBase {
 
     public static final String USER_NAME = "UserName";
     public static final String USER_PASSWORD = "UserPassword";
     public static final String USER_ID = "User_ID";
 
-    public int id;
-    
     @Required
     public String username;
     @Required
@@ -51,14 +49,6 @@ public final class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-    public int getId() {
-        return id;
-    }
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 }

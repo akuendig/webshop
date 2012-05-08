@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Comment {
+public class Comment extends EntityBase {
 
 	public static final String COMMENT_ID = "Comment_ID";
 	public static final String COMMENT_USER_ID = "Comment_User_ID";
@@ -12,7 +12,6 @@ public class Comment {
 	public static final String COMMENT_TEXT = "CommentText";
 	public static final String COMMENT_TIME = "CommentTime";
 
-	public int id;
 	public int userId;
 	public int productId;
 	public String text;
@@ -44,14 +43,6 @@ public class Comment {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getText() {

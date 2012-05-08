@@ -2,9 +2,8 @@ package data.database;
 
 import java.util.List;
 
-import data.IBrandRepository;
-
 import model.Brand;
+import data.IBrandRepository;
 
 public class BrandRepository extends BaseRepository<Brand> implements IBrandRepository{
 

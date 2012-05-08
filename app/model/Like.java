@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * This class represents a Like object
  */
-public final class Like {
+public final class Like extends EntityBase {
 
 	public static final String USER_ID = "User_ID";
 	public static final String PRODUCT_ID = "Product_ID";

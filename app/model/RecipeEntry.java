@@ -3,7 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RecipeEntry {
+public class RecipeEntry extends EntityBase {
 
 	public static final String QUANTITY = "Quantity";
 	public static final String RECIPE_ID = "Recipe_ID";

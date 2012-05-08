@@ -3,7 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class Product {
+public final class Product extends EntityBase {
 	
 	public static final String PRODUCT_ID = "Product_id";
 	public static final String PRODUCT_NAME = "ProductName";
@@ -11,10 +11,6 @@ public final class Product {
 	public static final String PRODUCT_PRICE = "ProductPrice";
 	public static final String PRODUCT_BRAND_ID = "Product_Brand_ID";
 	public static final String PRODUCT_ORIGIN_ID = "Product_Origin_ID";
-	/**
-	 * TODO The properties of the items should be added here
-	 */
-	private int id;
 	private String name;
 	private int weight;
 	private int price;
@@ -33,20 +29,6 @@ public final class Product {
 		this.price  = rs.getInt(PRODUCT_PRICE);
 		this.brandId = rs.getInt(PRODUCT_BRAND_ID);
 		this.originId = rs.getInt(PRODUCT_ORIGIN_ID);
-	}
-
-	/**
-	 * HINT: In eclipse, use Alt + Shirt + S menu and choose:
-	 * "Generate Getters and Setters to auto-magically generate
-	 * the getters. 
-	 */
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {

@@ -6,12 +6,11 @@ import java.sql.SQLException;
 /**
  * Object that represents a category of items (i.e. Food) 
  */
-public final class Category {
+public final class Category extends EntityBase {
 
 	public static final String CATEGORY_ID = "Category_ID";
 	public static final String CATEGORY_NAME = "CategoryName";
 	
-	private int id;
 	private String name;
 	
 	public Category() {
@@ -34,14 +33,6 @@ public final class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 }

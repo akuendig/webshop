@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
-public final class Recipe {
+public final class Recipe extends EntityBase {
 
 	public static final String RECIPE_ID = "Recipe_ID";
 	public static final String RECIPE_NAME = "RecipeName";
@@ -12,7 +12,6 @@ public final class Recipe {
 	public static final String RECIPE_TEXT = "RecipeText";
 	public static final String TOTAL_COST = "TotalCost";
 	
-	private int id;
 	private String name;
 	private Time prepTime;
 	private String text;
@@ -27,14 +26,6 @@ public final class Recipe {
 		this.prepTime = rs.getTime(RECIPE_PREP_TIME);
 		this.text = rs.getString(RECIPE_TEXT);
 		this.totalCost = rs.getFloat(TOTAL_COST);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Time getPrepTime() {
