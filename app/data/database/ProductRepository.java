@@ -88,7 +88,7 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 	 * @see data.IProductRepository#getByCategory(java.lang.String)
 	 */
 	@Override
-	public final List<Product> getByCategory(final String categoryId) {
+	public final List<Product> getByCategory(final int categoryId) {
 
 		return getResults(
 				"SELECT * " +
@@ -106,7 +106,7 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 	 * @see data.IProductRepository#getByBrand(java.lang.String)
 	 */
 	@Override
-	public final List<Product> getByBrand(final String brandId) {
+	public final List<Product> getByBrand(final int brandId) {
 
 		return getResults(
 				"SELECT * " +

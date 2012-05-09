@@ -5,7 +5,7 @@ import data.IUserRepository;
 
 public class UserRepository extends BaseRepository<User> implements IUserRepository {
 
-	protected UserRepository() {
+	public UserRepository() {
 		super("tblUser");
 	}
 

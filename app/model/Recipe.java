@@ -17,8 +17,7 @@ public final class Recipe extends EntityBase {
 	private String text;
 	private Float totalCost;
 	
-	public Recipe() {
-	}
+	public Recipe() { }
 
 	public Recipe(final ResultSet rs) throws SQLException {
 		this.id = rs.getInt(RECIPE_ID);

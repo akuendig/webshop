@@ -1,8 +1,8 @@
 package model;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class Comment extends EntityBase {
 
@@ -26,7 +26,7 @@ public class Comment extends EntityBase {
 		this.userId = rs.getInt(COMMENT_USER_ID);
 		this.productId = rs.getInt(COMMENT_PRODUCT_ID);
 		this.text = rs.getString(COMMENT_TEXT);
-		this.creationDate = rs.getDate(COMMENT_TIME);
+		this.creationDate = new Date(rs.getDate(COMMENT_TIME).getTime());
 	}
 	
 	public int getUserId() {

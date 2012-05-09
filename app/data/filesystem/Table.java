@@ -52,7 +52,7 @@ public class Table<T> {
     		}
     	} else if (table.toFile().createNewFile()) {
     		entries = new ArrayList<T>();
-    		return true;
+    		return save();
     	} else {
     		return false;
     	}
@@ -78,7 +78,7 @@ public class Table<T> {
 
     private Path getTableFile() {
     	
-    	return TableLocator.getFolder(tableName).resolve("all.table");
+    	return TableLocator.getFolder(tableName).resolve(tableName + ".table");
     }
 
 }

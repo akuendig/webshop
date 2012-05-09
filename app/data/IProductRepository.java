@@ -15,9 +15,9 @@ public interface IProductRepository {
 
 	public abstract List<Product> getByName(final String name);
 
-	public abstract List<Product> getByCategory(final String categoryId);
+	public abstract List<Product> getByCategory(final int categoryId);
 
-	public abstract List<Product> getByBrand(final String brandId);
+	public abstract List<Product> getByBrand(final int brandId);
 
 	public abstract List<Product> getByPopularity();
 

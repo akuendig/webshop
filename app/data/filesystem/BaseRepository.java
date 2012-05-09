@@ -14,10 +14,6 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
     
     private int maxId = 0;
     
-    protected ArrayList<T> getListCopy() {
-    	return new ArrayList<T>(entries);
-    }
-    
     protected BaseRepository(String tableName) {
         super(tableName);
 		
@@ -31,6 +27,10 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
             maxId = Math.max(maxId, entity.getId());
         }
 	}
+    
+    protected ArrayList<T> getListCopy() {
+    	return new ArrayList<T>(entries);
+    }
 	
 	protected T getById(final int id) {
         
@@ -51,6 +51,8 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
 	    maxId++;
 	    entity.setId(maxId);
 	    
+	    entries.add(entity);
+	    
         try {
             save();
             return true;
@@ -58,6 +60,7 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
 
             e.printStackTrace();
             maxId--;
+            entries.remove(entity);
             entity.setId(0);
             
             return false;

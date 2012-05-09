@@ -10,23 +10,29 @@ import com.google.inject.Provides;
 
 import controllers.UserStore;
 import data.IBrandRepository;
+import data.ICategoryProductRepository;
 import data.ICategoryRepository;
 import data.ICommentRepository;
 import data.ILikeRepository;
 import data.IOriginRepository;
 import data.IProductRepository;
+import data.IRecipeProductRepository;
 import data.IRecipeRepository;
 import data.IShoppingCartRepository;
+import data.IShoppingcartProductRepository;
 import data.IUserRepository;
-import data.database.BrandRepository;
-import data.database.CategoryRepository;
-import data.database.CommentRepository;
-import data.database.LikeRepository;
-import data.database.OriginRepository;
-import data.database.ProductRepository;
-import data.database.RecipeRepository;
-import data.database.ShoppingCartRepository;
-import data.database.UserRepository;
+import data.filesystem.BrandRepository;
+import data.filesystem.CategoryProductRepository;
+import data.filesystem.CategoryRepository;
+import data.filesystem.CommentRepository;
+import data.filesystem.LikeRepository;
+import data.filesystem.OriginRepository;
+import data.filesystem.ProductRepository;
+import data.filesystem.RecipeProductRepository;
+import data.filesystem.RecipeRepository;
+import data.filesystem.ShoppingCartRepository;
+import data.filesystem.ShoppingcartProductRepository;
+import data.filesystem.UserRepository;
 import data.filesystem.TableLocator;
 
 public class Dependencies implements Module {
@@ -41,7 +47,11 @@ public class Dependencies implements Module {
         binder.bind(UserStore.class);
         binder.bind(TableLocator.class);
         
-        binder.bind(IBrandRepository.class).to(data.filesystem.BrandRepository.class);
+        binder.bind(IShoppingcartProductRepository.class).to(ShoppingcartProductRepository.class);
+        binder.bind(IRecipeProductRepository.class).to(RecipeProductRepository.class);
+        binder.bind(ICategoryProductRepository.class).to(CategoryProductRepository.class);
+        
+        binder.bind(IBrandRepository.class).to(BrandRepository.class);
         binder.bind(ICategoryRepository.class).to(CategoryRepository.class);
         binder.bind(ICommentRepository.class).to(CommentRepository.class);
         binder.bind(ILikeRepository.class).to(LikeRepository.class);

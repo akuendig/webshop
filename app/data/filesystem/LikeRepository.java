@@ -5,20 +5,32 @@ import data.ILikeRepository;
 
 public class LikeRepository extends BaseRepository<Like> implements ILikeRepository {
 
-	protected LikeRepository() {
+	public LikeRepository() {
 		super("tblLike");
 	}
 
 	@Override
 	public Like get(int userId, int productId) {
-		// TODO Auto-generated method stub
+
+		for (Like entry: entries) {
+			if (entry.getProductId() == productId &&
+				entry.getUserId() == userId) {
+				return entry;
+			}
+		}
+		
 		return null;
 	}
 
 	@Override
 	public void create(int userId, int productId) {
-		// TODO Auto-generated method stub
+
+		Like like = new Like();
 		
+		like.setProductId(productId);
+		like.setUserId(userId);
+		
+		create(like);
 	}
 
 }
