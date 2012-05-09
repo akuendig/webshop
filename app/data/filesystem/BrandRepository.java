@@ -12,7 +12,7 @@ public class BrandRepository extends BaseRepository<Brand> implements IBrandRepo
 		super("tblBrand");
 
 		try {
-			super.initialize();
+			super.load();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}

@@ -41,7 +41,7 @@ public class Table<T> {
         return true;
     }
 
-    protected boolean initialize() throws IOException, ClassNotFoundException {
+    protected boolean load() throws IOException, ClassNotFoundException {
     	Path table = getTableFile();
     	
     	if (table.toFile().isFile()) {
