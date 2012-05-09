@@ -1,35 +1,58 @@
 package data.filesystem;
 
-import model.Product;
-import model.User;
-import data.IUserRepository;
+import java.util.List;
 
-public class ProductRepository extends BaseRepository<Product> implements IUserRepository {
+import model.Product;
+import data.IProductRepository;
+
+public class ProductRepository extends BaseRepository<Product> implements IProductRepository {
 
 	protected ProductRepository() {
 		super("tblProduct");
 	}
-
-	@Override
-	public boolean contains(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public Product getById(int id) {
+		return super.getById(id);
 	}
 
 	@Override
-	public User getUser(User user) {
+	public List<Product> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUserReg(String username) {
+	public List<Product> getRefined(String name, int categoryId, int brandId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User createUser(User user) {
+	public List<Product> getByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getByCategory(String categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getByBrand(String brandId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getByPopularity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getProductsInShoppingCart(int shoppingCartId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

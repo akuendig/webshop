@@ -1,37 +1,24 @@
 package data.filesystem;
 
 import model.Like;
-import model.User;
-import data.IUserRepository;
+import data.ILikeRepository;
 
-public class LikeRepository extends BaseRepository<Like> implements IUserRepository {
+public class LikeRepository extends BaseRepository<Like> implements ILikeRepository {
 
 	protected LikeRepository() {
 		super("tblLike");
 	}
 
 	@Override
-	public boolean contains(User user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public User getUser(User user) {
+	public Like get(int userId, int productId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUserReg(String username) {
+	public void create(int userId, int productId) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

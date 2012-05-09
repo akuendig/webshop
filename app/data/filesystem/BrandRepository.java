@@ -18,15 +18,12 @@ public class BrandRepository extends BaseRepository<Brand> implements IBrandRepo
 		}
 	}
 
-	@Override
-	public List<Brand> getAll() {
-
-		return entries;
+	public Brand getById(int id) {
+		return super.getById(id);
 	}
 
 	@Override
-	public Brand getById(int id) {
-
-		return super.getById(id);
+	public List<Brand> getAll() {
+		return getListCopy();
 	}
 }

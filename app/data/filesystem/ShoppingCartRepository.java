@@ -1,37 +1,50 @@
 package data.filesystem;
 
-import model.ShoppingCartEntry;
-import model.User;
-import data.IUserRepository;
+import java.util.List;
 
-public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry> implements IUserRepository {
+import model.ShoppingCartEntry;
+import data.IShoppingCartRepository;
+
+public class ShoppingCartRepository extends BaseRepository<ShoppingCartEntry> implements IShoppingCartRepository {
 
 	protected ShoppingCartRepository() {
 		super("tblShoppingCart");
 	}
 
 	@Override
-	public boolean contains(User user) {
+	public void create(int userId) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public User getUser(User user) {
+	public int getIdForUser(int userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<ShoppingCartEntry> getEntries(int shoppingCartId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUserReg(String username) {
+	public ShoppingCartEntry getEntry(int shoppingCartId, int productId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User createUser(User user) {
+	public void add(int shoppingCartId, int productId, int quantity) {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	@Override
+	public void remove(int shoppingCartId, int productId, int quantity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

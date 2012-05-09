@@ -11,26 +11,50 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
 
 	@Override
 	public boolean contains(User user) {
-		// TODO Auto-generated method stub
+
+		for (User entry: entries) {
+			if (entry.getUsername().equalsIgnoreCase(user.getUsername()) &&
+				entry.getPassword().equalsIgnoreCase(user.getPassword())) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	@Override
 	public User getUser(User user) {
-		// TODO Auto-generated method stub
+		
+		for (User entry: entries) {
+			if (entry.getUsername().equalsIgnoreCase(user.getUsername()) &&
+				entry.getPassword().equalsIgnoreCase(user.getPassword())) {
+				return entry;
+			}
+		}
+		
 		return null;
 	}
 
 	@Override
 	public User getUserReg(String username) {
-		// TODO Auto-generated method stub
+		
+		for (User entry: entries) {
+			if (entry.getUsername().equalsIgnoreCase(username)) {
+				return entry;
+			}
+		}
+		
 		return null;
 	}
 
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (create(user)){
+			return user;
+		} else {
+			return null;
+		}
 	}
 
 }

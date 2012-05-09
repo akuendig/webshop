@@ -1,37 +1,26 @@
 package data.filesystem;
 
-import model.Comment;
-import model.User;
-import data.IUserRepository;
+import java.util.List;
 
-public class CommentRepository extends BaseRepository<Comment> implements IUserRepository {
+import model.Comment;
+import data.ICommentRepository;
+
+public class CommentRepository extends BaseRepository<Comment> implements ICommentRepository {
 
 	protected CommentRepository() {
 		super("tblComment");
 	}
 
 	@Override
-	public boolean contains(User user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public User getUser(User user) {
+	public List<Comment> getAllForProduct(int productId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUserReg(String username) {
+	public void create(String comment, int productId, int userId) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

@@ -2,6 +2,7 @@ package data.filesystem;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import model.EntityBase;
 
@@ -12,6 +13,10 @@ import fj.F;
 public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
     
     private int maxId = 0;
+    
+    protected ArrayList<T> getListCopy() {
+    	return new ArrayList<T>(entries);
+    }
     
     protected BaseRepository(String tableName) {
         super(tableName);

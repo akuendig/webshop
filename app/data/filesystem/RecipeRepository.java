@@ -1,35 +1,30 @@
 package data.filesystem;
 
-import model.Recipe;
-import model.User;
-import data.IUserRepository;
+import java.util.List;
 
-public class RecipeRepository extends BaseRepository<Recipe> implements IUserRepository {
+import model.Recipe;
+import model.RecipeEntry;
+import model.RecipeOrder;
+import data.IRecipeRepository;
+
+public class RecipeRepository extends BaseRepository<Recipe> implements IRecipeRepository {
 
 	protected RecipeRepository() {
 		super("tblRecipe");
 	}
-
-	@Override
-	public boolean contains(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public Recipe getById(int id) {
+		return super.getById(id);
 	}
 
 	@Override
-	public User getUser(User user) {
+	public List<Recipe> getByName(String name, RecipeOrder order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUserReg(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User createUser(User user) {
+	public List<RecipeEntry> getEngredientsById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
