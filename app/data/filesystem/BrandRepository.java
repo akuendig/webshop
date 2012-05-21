@@ -8,7 +8,7 @@ import data.IBrandRepository;
 public class BrandRepository extends BaseRepository<Brand> implements IBrandRepository {
 
 	public BrandRepository() {
-		super("tblBrand");
+		super("tblBrand", Brand.class);
 	}
 
 	public Brand getById(int id) {

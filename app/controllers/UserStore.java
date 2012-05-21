@@ -32,7 +32,7 @@ public class UserStore {
         return ctx().session().get("username");
     }
 
-    public boolean authenticate(User user) {
+    public boolean login(User user) {
 
     	user = userRepo.getUser(user);
     	
@@ -44,6 +44,12 @@ public class UserStore {
         } else {
             return false;
         }
+    }
+
+    public void logout() {
+
+        ctx().session().remove("userid");
+        ctx().session().remove("username");
     }
 
     public boolean register(User user) {

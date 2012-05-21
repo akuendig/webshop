@@ -6,7 +6,7 @@ import data.IUserRepository;
 public class UserRepository extends BaseRepository<User> implements IUserRepository {
 
 	public UserRepository() {
-		super("tblUser");
+		super("tblUser", User.class);
 	}
 
 	@Override

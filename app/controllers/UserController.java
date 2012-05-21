@@ -62,7 +62,7 @@ public class UserController extends Controller {
         Form<User> userForm = form(User.class);
         User user = userForm.bindFromRequest().get();
 
-        if (userStore.authenticate(user)) {
+        if (userStore.login(user)) {
             return redirect(routes.UserController.index());
         } else {
             return unauthorized();
@@ -79,5 +79,11 @@ public class UserController extends Controller {
         } else {
             return unauthorized();
         }
+    }
+
+    public static Result logout() {
+
+        userStore.logout();
+        return redirect(routes.UserController.index());
     }
 }

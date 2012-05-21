@@ -10,7 +10,7 @@ import data.ICommentRepository;
 public class CommentRepository extends BaseRepository<Comment> implements ICommentRepository {
 
 	public CommentRepository() {
-		super("tblComment");
+		super("tblComment", Comment.class);
 	}
 
 	@Override

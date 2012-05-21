@@ -22,6 +22,7 @@ GET		/recipe/:id					controllers.RecipeController.get(id : Long)
 GET		/user						controllers.UserController.index()
 GET 	/user/shoppingcart			controllers.UserController.shoppingCart()
 POST	/user/login					controllers.UserController.login()
+GET		/user/logout				controllers.UserController.logout()
 POST	/user/register				controllers.UserController.register()
 
 # Map static resources from the /public folder to the /assets URL path

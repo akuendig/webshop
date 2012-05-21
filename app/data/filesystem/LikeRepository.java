@@ -6,7 +6,7 @@ import data.ILikeRepository;
 public class LikeRepository extends BaseRepository<Like> implements ILikeRepository {
 
 	public LikeRepository() {
-		super("tblLike");
+		super("tblLike", Like.class);
 	}
 
 	@Override

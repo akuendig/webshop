@@ -10,7 +10,7 @@ import data.IShoppingcartProductRepository;
 public class ShoppingcartProductRepository extends Table<ShoppingCartEntry> implements IShoppingcartProductRepository {
 
 	public ShoppingcartProductRepository() {
-		super("tblShoppingcartContainsProduct");
+		super("tblShoppingcartContainsProduct", ShoppingCartEntry.class);
 
 	}
 

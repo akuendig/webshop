@@ -19,7 +19,7 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 
 	@Inject
 	public ProductRepository(ICategoryProductRepository categoryRepo, IShoppingCartRepository shoppingCartRepo) {
-		super("tblProduct");
+		super("tblProduct", Product.class);
 		
 		this.categoryRepo = categoryRepo;
 		this.shoppingCartRepo = shoppingCartRepo;

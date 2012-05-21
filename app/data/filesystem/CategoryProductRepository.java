@@ -9,7 +9,7 @@ import data.ICategoryProductRepository;
 public class CategoryProductRepository extends Table<CategoryContainsProduct> implements ICategoryProductRepository {
 
 	public CategoryProductRepository() {
-		super("tblCategoryContainsProduct");
+		super("tblCategoryContainsProduct", CategoryContainsProduct.class);
 	}
 
 	@Override

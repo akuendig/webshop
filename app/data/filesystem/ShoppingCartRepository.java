@@ -9,13 +9,13 @@ import model.ShoppingCartEntry;
 import data.IShoppingCartRepository;
 import data.IShoppingcartProductRepository;
 
-public class ShoppingCartRepository extends BaseRepository<ShoppingCart> implements IShoppingCartRepository {
+public class ShoppingcartRepository extends BaseRepository<ShoppingCart> implements IShoppingCartRepository {
 	
 	IShoppingcartProductRepository shoppingcartProductRepo;
 
 	@Inject
-	public ShoppingCartRepository(IShoppingcartProductRepository shoppingcartProductRepo) {
-		super("tblShoppingCart");
+	public ShoppingcartRepository(IShoppingcartProductRepository shoppingcartProductRepo) {
+		super("tblShoppingCart", ShoppingCart.class);
 		
 		this.shoppingcartProductRepo = shoppingcartProductRepo;
 	}

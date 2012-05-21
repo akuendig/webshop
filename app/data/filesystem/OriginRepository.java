@@ -6,7 +6,7 @@ import data.IOriginRepository;
 public class OriginRepository extends BaseRepository<Origin> implements IOriginRepository {
 
 	public OriginRepository() {
-		super("tblOrigin");
+		super("tblOrigin", Origin.class);
 	}
 	
 	public Origin getById(int id) {

@@ -10,7 +10,7 @@ import data.ICategoryRepository;
 public class CategoryRepository extends BaseRepository<Category> implements ICategoryRepository {
 
 	public CategoryRepository() {
-		super("tblCategory");
+		super("tblCategory", Category.class);
 	}
 
 	@Override

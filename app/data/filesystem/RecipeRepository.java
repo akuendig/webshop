@@ -24,7 +24,7 @@ public class RecipeRepository extends BaseRepository<Recipe> implements IRecipeR
 
 	@Inject
 	public RecipeRepository(IProductRepository productRepo, IRecipeProductRepository recipeProductRepo) {
-		super("tblRecipe");
+		super("tblRecipe", Recipe.class);
 		
 		this.productRepo = productRepo;
 		this.recipeProductRepo = recipeProductRepo;

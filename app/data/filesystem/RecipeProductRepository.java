@@ -9,7 +9,7 @@ import data.IRecipeProductRepository;
 public class RecipeProductRepository extends Table<RecipeContainsProduct> implements IRecipeProductRepository {
 
 	public RecipeProductRepository() {
-		super("tblRecipeContainsProduct");
+		super("tblRecipeContainsProduct", RecipeContainsProduct.class);
 
 	}
 

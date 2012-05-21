@@ -14,7 +14,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import org.codehaus.jackson.map.type.TypeFactory;
 
 import fj.data.Array;
 
@@ -22,11 +22,20 @@ public class Table<T> {
 
     protected final T NULL = null;
     protected final String tableName;
+    protected final Class<T> elementClass;
+    
     protected ArrayList<T> entries;
 
-    public Table(String tableName) {
+    public Table(String tableName, Class<T> elementClass) {
         
         this.tableName = tableName;
+        this.elementClass = elementClass;
+
+        try {
+            load();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
     
     protected boolean Serialize(ObjectOutputStream out) throws JsonGenerationException, JsonMappingException, IOException {
@@ -37,7 +46,7 @@ public class Table<T> {
     
     protected boolean Deserialize(ObjectInputStream in) throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper o = new ObjectMapper();
-        entries = o.readValue(in, new TypeReference<ArrayList<T>>() { });
+        entries = o.readValue(in, TypeFactory.collectionType(ArrayList.class, elementClass));
         return true;
     }
 

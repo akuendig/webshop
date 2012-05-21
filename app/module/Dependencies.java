@@ -30,7 +30,7 @@ import data.filesystem.OriginRepository;
 import data.filesystem.ProductRepository;
 import data.filesystem.RecipeProductRepository;
 import data.filesystem.RecipeRepository;
-import data.filesystem.ShoppingCartRepository;
+import data.filesystem.ShoppingcartRepository;
 import data.filesystem.ShoppingcartProductRepository;
 import data.filesystem.UserRepository;
 import data.filesystem.TableLocator;
@@ -47,19 +47,19 @@ public class Dependencies implements Module {
         binder.bind(UserStore.class);
         binder.bind(TableLocator.class);
         
-        binder.bind(IShoppingcartProductRepository.class).to(ShoppingcartProductRepository.class);
-        binder.bind(IRecipeProductRepository.class).to(RecipeProductRepository.class);
-        binder.bind(ICategoryProductRepository.class).to(CategoryProductRepository.class);
+        binder.bind(IShoppingcartProductRepository.class).to(ShoppingcartProductRepository.class).asEagerSingleton();
+        binder.bind(IRecipeProductRepository.class).to(RecipeProductRepository.class).asEagerSingleton();
+        binder.bind(ICategoryProductRepository.class).to(CategoryProductRepository.class).asEagerSingleton();
         
-        binder.bind(IBrandRepository.class).to(BrandRepository.class);
-        binder.bind(ICategoryRepository.class).to(CategoryRepository.class);
-        binder.bind(ICommentRepository.class).to(CommentRepository.class);
-        binder.bind(ILikeRepository.class).to(LikeRepository.class);
-        binder.bind(IOriginRepository.class).to(OriginRepository.class);
-        binder.bind(IProductRepository.class).to(ProductRepository.class);
-        binder.bind(IRecipeRepository.class).to(RecipeRepository.class);
-        binder.bind(IShoppingCartRepository.class).to(ShoppingCartRepository.class);
-        binder.bind(IUserRepository.class).to(UserRepository.class);
+        binder.bind(IBrandRepository.class).to(BrandRepository.class).asEagerSingleton();
+        binder.bind(ICategoryRepository.class).to(CategoryRepository.class).asEagerSingleton();
+        binder.bind(ICommentRepository.class).to(CommentRepository.class).asEagerSingleton();
+        binder.bind(ILikeRepository.class).to(LikeRepository.class).asEagerSingleton();
+        binder.bind(IOriginRepository.class).to(OriginRepository.class).asEagerSingleton();
+        binder.bind(IProductRepository.class).to(ProductRepository.class).asEagerSingleton();
+        binder.bind(IRecipeRepository.class).to(RecipeRepository.class).asEagerSingleton();
+        binder.bind(IShoppingCartRepository.class).to(ShoppingcartRepository.class).asEagerSingleton();
+        binder.bind(IUserRepository.class).to(UserRepository.class).asEagerSingleton();
     }
 
     @Provides

@@ -14,14 +14,8 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
     
     private int maxId = 0;
     
-    protected BaseRepository(String tableName) {
-        super(tableName);
-		
-		try {
-			super.load();
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
+    protected BaseRepository(String tableName, Class<T> elementClass) {
+        super(tableName, elementClass);
         
         for (EntityBase entity: entries) {
             maxId = Math.max(maxId, entity.getId());
