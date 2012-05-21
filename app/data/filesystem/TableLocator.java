@@ -1,6 +1,5 @@
 package data.filesystem;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,8 +13,8 @@ public class TableLocator {
 		return getOrCreate("tables");
 	}
 	
-	private static URI getBase() throws URISyntaxException {
-		return BaseRepository.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+	private static String getBase() throws URISyntaxException {
+		return "C:\\";
 	}
 	
 	private static Path getOrCreate(String directory) {
