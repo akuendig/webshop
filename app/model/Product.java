@@ -19,7 +19,16 @@ public final class Product extends EntityBase {
 	
 	public Product() {
 	}
-
+	// Creation
+	public Product(final String name, final int weight, final int price, 
+			final int brandId, final int originId){
+		this.name = name;
+		this.weight = weight;
+		this.price = price;
+		this.brandId = brandId;
+		this.originId = originId;
+	}
+	
 	public Product(
 		final ResultSet rs
 	) throws SQLException {

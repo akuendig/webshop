@@ -11,7 +11,9 @@ import util.ModelFactory;
 
 import com.google.inject.Inject;
 
-public abstract class BaseRepository<T> {
+import data.ICrud;
+
+public abstract class BaseRepository<T> implements ICrud<T> {
 	
 	@Inject
 	protected Connection sqlConnection;

@@ -13,8 +13,9 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
 	public boolean contains(User user) {
 
 		for (User entry: entries) {
-			if (entry.getUsername().equalsIgnoreCase(user.getUsername()) &&
-				entry.getPassword().equalsIgnoreCase(user.getPassword())) {
+			if (entry.getUsername().equalsIgnoreCase(user.getUsername()) /*&&  // User-names should be unique. Otherwise the function User getReg(username)
+				entry.getPassword().equalsIgnoreCase(user.getPassword())*/) {  // will return the first entry it finds. Which may not be the logged in user
+																				// but the one that has registered first under that name.
 				return true;
 			}
 		}

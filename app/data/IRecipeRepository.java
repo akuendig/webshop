@@ -6,7 +6,7 @@ import model.Recipe;
 import model.RecipeEntry;
 import model.RecipeOrder;
 
-public interface IRecipeRepository {
+public interface IRecipeRepository extends ICrud<Recipe> {
 
 	public abstract List<Recipe> getByName(String name, RecipeOrder order);
 

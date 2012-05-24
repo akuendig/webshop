@@ -15,6 +15,10 @@ public final class Brand extends EntityBase {
 
 	public Brand() {
 	}
+	
+	public Brand(final String name) {
+		this.name = name;
+	}
 
 	public Brand(final ResultSet rs) throws SQLException {
 		this.id = rs.getInt(BRAND_ID);

@@ -17,8 +17,8 @@ public final class Category extends EntityBase {
 	}
 
 	public Category(final String name) {
-		super();
-		this.id = 0;
+		//super();		von Manuel auskommentiert 
+		//this.id = 0;
 		this.name = name;
 	}
 

@@ -6,6 +6,11 @@ public class CategoryContainsProduct {
 	
 	public int categoryId;
 	
+	public CategoryContainsProduct(final int productId, final int categoryId){
+		this.categoryId = categoryId;
+		this.productId = productId;
+	}
+	
 	public int getProductId() {
 		return productId;
 	}

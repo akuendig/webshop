@@ -4,13 +4,15 @@ package data.filesystem;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import data.ICrud;
+
 import model.EntityBase;
 
 
 import fj.F;
 
 
-public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
+public abstract class BaseRepository<T extends EntityBase> extends Table<T> implements ICrud<T> {
     
     private int maxId = 0;
     
@@ -26,7 +28,7 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
     	return new ArrayList<T>(entries);
     }
 	
-	protected T getById(final int id) {
+	public T getById(final int id) {
         
         return
             getQuery()
@@ -38,7 +40,7 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
             .orSome(NULL);
     }
 	
-	protected boolean create(T entity) {
+	public boolean create(T entity) {
 	    
 	    if (entity.getId() != 0) return false;
 	    
@@ -61,7 +63,7 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
         }
 	}
 	
-	protected boolean update(T entity) {
+	public boolean update(T entity) {
 	    try {
             save();
             return true;
@@ -72,7 +74,7 @@ public abstract class BaseRepository<T extends EntityBase> extends Table<T> {
         }
 	}
 	
-	protected boolean delete(T entity) {
+	public boolean delete(T entity) {
 	    
 	    if (!entries.remove(getById(entity.getId())))
 	        return false;

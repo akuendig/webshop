@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Category;
 
-public interface ICategoryRepository {
+public interface ICategoryRepository extends ICrud<Category> {
 
 	public abstract List<Category> getAll();
 

@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import play.mvc.Controller;
+import scala.collection.generic.BitOperations.Int;
+
 import model.ShoppingCart;
 import model.ShoppingCartEntry;
 import data.IShoppingCartRepository;
@@ -59,17 +62,28 @@ public class ShoppingcartRepository extends BaseRepository<ShoppingCart> impleme
 	}
 
 	@Override
-	public void add(int shoppingCartId, int productId, int quantity) {
+	public int add(int shoppingCartId, int productId, int quantity) {
 
 		ShoppingCartEntry entry = getEntry(shoppingCartId, productId);
+		int change = 0;
 		
-		if (entry == null) {
+		if (entry == null && quantity <= 0) {
+			return change;
+		} 
+		else if(entry == null) {
 			entry = shoppingcartProductRepo.create(shoppingCartId, productId, quantity);
-		} else {
-			entry.setQuantity(entry.getQuantity() + quantity);
+			change = quantity;
 		}
-		
+		else if(-quantity < entry.getQuantity()) {
+			entry.setQuantity(entry.getQuantity() + quantity);
+			change = quantity;
+		}
+		else {
+			change = Integer.MIN_VALUE;
+			remove(shoppingCartId, productId, entry.getQuantity());
+		}
 		shoppingcartProductRepo.update(entry);
+		return change;
 	}
 
 	@Override

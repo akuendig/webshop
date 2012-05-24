@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Comment;
 
-public interface ICommentRepository {
+public interface ICommentRepository extends ICrud<Comment> {
 
 	public abstract List<Comment> getAllForProduct(int productId);
 

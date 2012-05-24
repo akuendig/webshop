@@ -4,8 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import play.data.Form;
+
+import model.Brand;
+import model.Category;
+import model.CategoryContainsProduct;
+import model.Origin;
+import model.Product;
+import model.User;
+
 import com.google.inject.Binder;
 import com.google.inject.Module;
+import com.google.inject.Provider;
 import com.google.inject.Provides;
 
 import controllers.UserStore;
@@ -61,8 +71,10 @@ public class Dependencies implements Module {
         binder.bind(IShoppingCartRepository.class).to(ShoppingcartRepository.class).asEagerSingleton();
         binder.bind(IUserRepository.class).to(UserRepository.class).asEagerSingleton();
     }
+    
 
-    @Provides
+
+	@Provides
     Connection provideConnection() {
 
         Connection connection = null;

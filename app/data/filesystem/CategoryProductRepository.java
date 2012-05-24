@@ -26,4 +26,27 @@ public class CategoryProductRepository extends Table<CategoryContainsProduct> im
 		return result;
 	}
 
+	@Override
+	public boolean create(CategoryContainsProduct entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean update(CategoryContainsProduct entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public CategoryContainsProduct getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(CategoryContainsProduct entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

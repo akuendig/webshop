@@ -2,6 +2,10 @@ package data;
 
 import java.util.List;
 
-public interface ICategoryProductRepository {
-	List<Integer> getByCategory(int category);
+import model.CategoryContainsProduct;
+
+public interface ICategoryProductRepository extends ICrud<CategoryContainsProduct> {
+	
+	public abstract List<Integer> getByCategory(int categoryId);
+
 }

@@ -137,10 +137,23 @@ public class ProductController extends Controller {
     		quantity = Integer.parseInt(form.get("quantity")[0]);
 		} catch (NumberFormatException e) { }
     	
-		shoppingRepo.add(
+		int a = shoppingRepo.add(
     		shoppingRepo.getIdForUser(UserStore.getUserId()),
     		id.intValue(),
     		quantity);
+		
+    	if (a > 0) {
+			flash("success", String.valueOf(a) + " Item(s) have been moved to your shoppingcart.");
+		} 
+    	else if (a == Integer.MIN_VALUE) {
+			flash("message", "The item has been completely removed from your Shoppingcart!");
+		}
+		else if (a < 0){
+			flash("message", String.valueOf(-a) + " Item(s) have been removed from your shoppingcart!");
+		}
+	    else {
+			flash("error", "Bad request! The entered value was invalid.");
+		}
     	
         return redirect(routes.ProductController.get(id));
     }

@@ -30,8 +30,8 @@
 	@for(product <- products) {
 		<tr>
 			<td>@product.getName()</td>
-			<td>@product.getWeight()</td>
 			<td>@product.getPrice()</td>
+			<td>@product.getWeight()</td>
 			<td><a class='search' href='/product/@product.getId()'>
 			<i class='icon-search'></i>View
 			</a></td>

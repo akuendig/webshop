@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET		/build						controllers.Application.build()
 
 # Product page
 GET		/product					controllers.ProductController.index()

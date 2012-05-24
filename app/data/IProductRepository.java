@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Product;
 
-public interface IProductRepository {
+public interface IProductRepository extends ICrud<Product> {
 
 	public abstract Product getById(final int id);
 

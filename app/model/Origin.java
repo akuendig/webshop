@@ -12,6 +12,10 @@ public class Origin extends EntityBase {
 
 	public Origin() {
 	}
+	
+	public Origin(final String countryName) {
+		this.countryName = countryName;
+	}
 
 	public Origin(final ResultSet rs) throws SQLException {
 		this.id = rs.getInt(ORIGIN_ID);

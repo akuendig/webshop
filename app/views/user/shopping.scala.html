@@ -24,6 +24,8 @@
 			<th>Weight</th>
 			<th>Price</th>
 			<th>Quantity</th>
+			<th>Total Cost</th>
+			<th>Details</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -34,6 +36,10 @@
 			<td>@products.get(entry.getProductId()).getWeight()</td>
 			<td>@products.get(entry.getProductId()).getPrice()</td>
 			<td>@entry.getQuantity()</td>
+			<td>@(products.get(entry.getProductId()).getPrice()*entry.getQuantity())</td>
+			<td><a class='search' href='/product/@entry.getProductId()'>
+			<i class='icon-search'></i>View
+			</a></td>
 			<td>
 				<form class='no-margin form-inline' action="/product/@entry.getProductId()/remove" method="post">
 					<input type='hidden' value='@entry.getQuantity()' name="quantity" />
@@ -46,6 +52,7 @@
 		}
 	</tbody>
 </table>
+
 } else {
 	<h4>Please login to view your shopping cart.</h4>
 }

@@ -2,7 +2,7 @@ package data;
 
 import model.User;
 
-public interface IUserRepository {
+public interface IUserRepository extends ICrud<User> {
 
 	public abstract boolean contains(User user);
 

@@ -16,13 +16,16 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 	ICategoryProductRepository categoryRepo;
 	
 	IShoppingCartRepository shoppingCartRepo;
+	
+	ICategoryProductRepository categoryProductRepo;
 
 	@Inject
-	public ProductRepository(ICategoryProductRepository categoryRepo, IShoppingCartRepository shoppingCartRepo) {
+	public ProductRepository(ICategoryProductRepository categoryRepo, IShoppingCartRepository shoppingCartRepo, ICategoryProductRepository catProdRepo) {
 		super("tblProduct", Product.class);
 		
 		this.categoryRepo = categoryRepo;
 		this.shoppingCartRepo = shoppingCartRepo;
+		this.categoryProductRepo = catProdRepo;
 	}
 	
 	public Product getById(int id) {
@@ -45,8 +48,8 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 		}
 
 		for (Product entry: entries) {
-			if (entry.getName().matches(name) &&
-				(categoryId == 0 || products.contains(entry.getId())) &&
+			if (entry.getName().matches(name) &&							// names equal &&
+				(categoryId == 0 || products.contains(entry.getId())) &&		// (no category set || 
 				(brandId <= 0 || entry.getBrandId() == brandId)){
 				results.add(entry);
 			}
@@ -123,6 +126,11 @@ public class ProductRepository extends BaseRepository<Product> implements IProdu
 		}
 		
 		return results;
+	}
+	
+	//@Override
+	public void add(Product product) {
+		this.create(product);		
 	}
 
 }

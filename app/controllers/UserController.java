@@ -65,7 +65,9 @@ public class UserController extends Controller {
         if (userStore.login(user)) {
             return redirect(routes.UserController.index());
         } else {
-            return unauthorized();
+        	flash("error", "Login failed! Please check username and password.");
+        	return redirect(routes.UserController.index());
+           // return unauthorized();
         }
     }
 
@@ -77,7 +79,9 @@ public class UserController extends Controller {
         if (userStore.register(user)) {
             return redirect(routes.UserController.index());
         } else {
-            return unauthorized();
+        	flash("error", "Register failed! That username is already in use. Please select another");
+        	return redirect(routes.UserController.index());
+           // return unauthorized();
         }
     }
 
